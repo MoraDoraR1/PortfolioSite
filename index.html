@@ -911,18 +911,24 @@
             <div class="work-label"><span>PROJECT 01 · SURVIVOR-LIKE</span><span class="work-status">TEAM PROJECT</span></div>
             <div><h3>COM<br>STOCK</h3><p>게임의 핵심 구조를 기준으로 팀의 의견을 조율하고, 제한된 일정 안에서 범위를 재설정해 완성까지 이끈 뱀파이어 서바이버류 프로젝트입니다.</p><dl class="project-facts"><div><dt>역할</dt><dd>팀장 · 기획 리드</dd></div><div><dt>팀 / 기간</dt><dd>5인 · 2026.08 · 8주</dd></div><div><dt>결과</dt><dd>개발 완료 · itch.io 출시 검토</dd></div></dl></div>
             <div class="doc-actions">
-              <!-- EDITABLE: 컴스톡 자료가 준비되면 아래 disabled 버튼을 활성 버튼으로 교체하세요.
-                   예) <button type="button" class="doc-open" data-media-kind="document"
-                         data-media-title="컴스톡 기획서" data-media-caption="한 줄 설명"
-                         data-media-items='[{"type":"pdf","src":"assets/portfolio/comstock/planning-document.pdf"}]'>
-                       (문서 아이콘 svg) <span>기획서 보기</span></button>
-                   영상은 data-media-kind="video" 와 {"type":"video","src":"...gameplay.mp4"} 사용,
-                   itch.io 출시 링크는 <a class="doc-open" href="https://...">itch.io에서 보기</a> 로 연결하세요.
-                   권장 경로: assets/portfolio/comstock/ (cover.webp / planning-document.pdf / gameplay.mp4 / screenshots/) -->
-              <button type="button" class="doc-open" disabled aria-disabled="true" title="자료 준비 중">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
-                <span>기획서 · 플레이 영상 준비 중</span>
+              <!-- EDITABLE: 기획서·스크린샷이 준비되면 아래 형식으로 버튼을 추가하세요.
+                   예) <button class="doc-open" data-media-kind="document"
+                         data-media-title="컴스톡 기획서"
+                         data-media-items='[{"type":"pdf","src":"assets/portfolio/comstock/planning-document.pdf"}]'>...</button>
+                   권장 경로: assets/portfolio/comstock/ (cover.webp / planning-document.pdf / screenshots/) -->
+              <button type="button" class="doc-open" data-media-kind="video"
+                data-media-title="컴스톡 플레이 영상"
+                data-media-caption="뱀서라이크 장르 5인 팀 프로젝트 — 실제 플레이 영상"
+                data-media-items='[
+                  {"type":"video","src":"assets/portfolio/comstock/gameplay.mp4"}
+                ]'>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg>
+                <span>플레이 영상 보기</span>
               </button>
+              <a class="doc-open" href="https://noah-kim.itch.io/comstock-zombie-survival" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"/></svg>
+                <span>itch.io에서 플레이</span>
+              </a>
             </div>
           </article>
           <article class="work-card small reveal">
