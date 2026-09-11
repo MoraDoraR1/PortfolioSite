@@ -1,0 +1,16 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# 임시 산출물 / 스크린샷
+/shot-*.png
+*.log
+
+# 민감 원본(집주소·연락처 포함 이력서 스캔 등)은 공개 저장소에 커밋 금지
+# 필요 시 민감정보를 가린 사본만 assets/ 아래에 올릴 것
+work/
+private/
+*-resume-original.*
