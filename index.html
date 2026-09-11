@@ -349,6 +349,23 @@
     .footer p { margin: 18px 0 0; color: rgba(255,255,255,.66); font-size: 13px; }
     .to-top { min-height: 44px; display: inline-flex; align-items: center; padding: 11px 14px; border: 1px solid rgba(255,255,255,.28); border-radius: 6px; font-size: 12px; font-weight: 800; }
 
+    /* 맨 위로 플로팅 버튼 (GAME LOG 화면에서만 노출) */
+    .to-top-float {
+      position: fixed; z-index: 60;
+      right: max(20px, env(safe-area-inset-right)); bottom: calc(20px + env(safe-area-inset-bottom));
+      width: 52px; height: 52px; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+      border: 1px solid var(--line-strong); border-radius: 999px; background: rgba(255,255,255,.92);
+      color: var(--accent-ink); cursor: pointer; box-shadow: 0 10px 30px rgba(15,34,52,.18);
+      -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+      opacity: 0; visibility: hidden; transform: translateY(12px);
+      transition: opacity .25s ease, transform .25s ease, visibility .25s, background .2s, color .2s;
+    }
+    .to-top-float.is-visible { opacity: 1; visibility: visible; transform: none; }
+    .to-top-float:hover { background: var(--accent); color: var(--paper); }
+    .to-top-float svg { width: 20px; height: 20px; }
+    .to-top-float span { font: 800 8px/1 var(--font-ui); letter-spacing: .06em; }
+    @media (max-width: 620px) { .to-top-float { width: 46px; height: 46px; } }
+
     .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
     .js .reveal.visible { opacity: 1; transform: none; }
 
@@ -988,6 +1005,11 @@
     </div>
   </div>
 
+  <button type="button" class="to-top-float" id="to-top-float" aria-label="맨 위로 이동">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+    <span>TOP</span>
+  </button>
+
   <footer class="footer">
     <div class="footer-inner">
       <div><h2>READY FOR<br>NEXT STAGE.</h2><p>© 2026 Reviewing Designer. All rights reserved.</p></div>
@@ -1074,7 +1096,22 @@
       const id = documentIds[currentDocumentIndex];
       if (updateHash) history.replaceState(null, '', `#${id}`);
       setActiveLink(id);
+      updateToTopFloat();
     };
+
+    // 맨 위로 버튼: GAME LOG 화면에서 아래로 스크롤했을 때만 노출
+    const toTopFloat = document.getElementById('to-top-float');
+    function updateToTopFloat() {
+      if (!toTopFloat) return;
+      const onGameLog = documentIds[currentDocumentIndex] === 'game-log';
+      const scrolled = window.scrollY > 360;
+      toTopFloat.classList.toggle('is-visible', onGameLog && scrolled);
+    }
+    if (toTopFloat) {
+      toTopFloat.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+      window.addEventListener('scroll', updateToTopFloat, { passive: true });
+      window.addEventListener('resize', updateToTopFloat);
+    }
 
     documentButtons.forEach(button => {
       button.addEventListener('click', () => showDocument(Number(button.dataset.documentIndex)));
@@ -1104,6 +1141,7 @@
           const id = documentIds[currentDocumentIndex];
           history.replaceState(null, '', `#${id}`);
           setActiveLink(id);
+          updateToTopFloat();
         }, 100);
       }, { passive: true });
       documentViewport.addEventListener('keydown', (event) => {
