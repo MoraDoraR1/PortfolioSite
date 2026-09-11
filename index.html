@@ -208,8 +208,6 @@
     .profile-identity { display: flex; align-items: center; gap: 18px; margin-bottom: 14px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
     .profile-photo { width: 124px; flex: 0 0 124px; aspect-ratio: 1; margin: 0; overflow: hidden; border-radius: 12px; background: var(--sky); }
     .profile-photo img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: 50% 38%; }
-    /* PROFILE 슬라이드 안에 병합된 RESUME 구분 */
-    .resume-in-profile { margin-top: 96px; padding-top: 40px; border-top: 2px solid var(--midnight); }
     .meta-list { list-style: none; margin: 0; padding: 0; }
     .meta-list li { display: grid; grid-template-columns: 84px 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); align-items: start; }
     .meta-list li:last-child { border: 0; }
@@ -625,6 +623,7 @@
         <a class="active" href="#intro" aria-current="page">INTRO</a>
         <a href="#portfolio">PORTFOLIO</a>
         <a href="#profile">PROFILE</a>
+        <a href="#resume">RESUME</a>
         <a href="#essay">ESSAY</a>
         <a href="#game-log">GAME LOG</a>
       </div>
@@ -677,8 +676,9 @@
             <div class="document-toggle" role="group" aria-label="프로필, 이력서, 자기소개서, 포트폴리오와 게임 경력 전환">
               <button class="active" type="button" data-document-index="0" aria-pressed="true">PORTFOLIO</button>
               <button type="button" data-document-index="1" aria-pressed="false">PROFILE</button>
-              <button type="button" data-document-index="2" aria-pressed="false">ESSAY</button>
-              <button type="button" data-document-index="3" aria-pressed="false">GAME LOG</button>
+              <button type="button" data-document-index="2" aria-pressed="false">RESUME</button>
+              <button type="button" data-document-index="3" aria-pressed="false">ESSAY</button>
+              <button type="button" data-document-index="4" aria-pressed="false">GAME LOG</button>
             </div>
           </div>
         </div>
@@ -788,8 +788,13 @@
           <p class="tool-legal">각 제품명과 로고는 해당 소유자의 상표입니다. 이 표시는 사용 경험을 설명하기 위한 것이며 후원 또는 제휴를 의미하지 않습니다.</p>
         </section>
 
-        <div class="reveal resume-in-profile">
-          <div class="kicker">EXPERIENCE</div>
+                </div>
+              </section>
+
+              <section class="document-slide" id="resume" aria-labelledby="resume-title">
+                <div class="document-slide-inner">
+        <div class="reveal">
+          <div class="kicker">03 · EXPERIENCE</div>
           <h2 class="section-title" id="resume-title">RESUME</h2>
           <p class="section-lead">오늘의 반성이 성장한 내일의 저를 만든다고 생각합니다.<br>과거의 선택과 실수를 돌아보며 배우는 기획자입니다.</p>
         </div>
@@ -882,7 +887,7 @@
               <section class="document-slide essay-slide" id="essay" aria-labelledby="essay-title">
                 <div class="document-slide-inner">
         <div class="reveal">
-          <div class="kicker">03 · MY STORY</div>
+          <div class="kicker">04 · MY STORY</div>
           <h2 class="section-title" id="essay-title">ESSAY</h2>
         </div>
         <article class="essay-panel reveal">
@@ -936,7 +941,7 @@
     <section class="section paper-section" id="game-log" aria-labelledby="game-title">
       <div class="container">
         <div class="reveal">
-          <div class="kicker">04 · PLAY HISTORY</div>
+          <div class="kicker">05 · PLAY HISTORY</div>
           <h2 class="section-title" id="game-title">GAME LOG</h2>
           <p class="section-lead">게임을 소비한 시간이 아니라, 무엇을 관찰하고 어떤 질문을 남겼는지 보여주는 공간입니다.</p>
           <div class="doc-actions">
@@ -1248,10 +1253,11 @@
       const slideByKey = {
         portfolio: portfolioSection,
         profile: document.querySelector('.document-slide.profile-slide'),
+        resume: document.getElementById('resume'),
         essay: document.getElementById('essay'),
         'game-log': gameLogSection,
       };
-      ['portfolio', 'profile', 'essay', 'game-log'].forEach(key => {
+      ['portfolio', 'profile', 'resume', 'essay', 'game-log'].forEach(key => {
         const slide = slideByKey[key];
         if (slide) documentTrack.append(slide);
       });
@@ -1277,8 +1283,8 @@
     const documentButtons = [...document.querySelectorAll('[data-document-index]')];
     const documentPrev = document.getElementById('document-prev');
     const documentNext = document.getElementById('document-next');
-    const documentIds = ['portfolio', 'profile', 'essay', 'game-log'];
-    const pageSequence = ['intro', 'portfolio', 'profile', 'essay', 'game-log'];
+    const documentIds = ['portfolio', 'profile', 'resume', 'essay', 'game-log'];
+    const pageSequence = ['intro', 'portfolio', 'profile', 'resume', 'essay', 'game-log'];
     const pageLabels = {
       intro: 'INTRO', profile: 'PROFILE', resume: 'RESUME', essay: 'ESSAY',
       'game-log': 'GAME LOG', portfolio: 'PORTFOLIO'
