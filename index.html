@@ -468,33 +468,34 @@
     .work-card.featured .doc-open:disabled { border-color: rgba(255,255,255,.24); color: rgba(255,255,255,.5); background: transparent; }
     .doc-count { font-weight: 700; opacity: .7; }
 
-    /* ── 카드 내 인라인 영상(마우스 오버 시 재생) ────────────────── */
     .card-media { margin-top: 22px; }
-    .card-video {
-      position: relative; margin: 0 0 14px; width: 100%; aspect-ratio: 16 / 9;
-      overflow: hidden; border-radius: 12px; background: #000;
-      border: 1px solid rgba(255,255,255,.14); cursor: pointer;
+
+    /* ── 카드 배경 영상(마우스 오버 시 카드 크기 유지한 채 배경 재생) ── */
+    .work-card[data-card-video] { cursor: pointer; }
+    .card-bg-video {
+      position: absolute; inset: 0; z-index: 0;
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      opacity: 0; visibility: hidden; transition: opacity .3s ease, visibility .3s;
+      pointer-events: none; background: #000;
     }
-    .work-card:not(.featured) .card-video { border-color: var(--line); }
-    .card-video video {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; display: block;
+    /* 영상 위에 살짝 어두운 오버레이(가독성용) */
+    .card-bg-video-scrim {
+      position: absolute; inset: 0; z-index: 0; opacity: 0; visibility: hidden;
+      transition: opacity .3s ease, visibility .3s; pointer-events: none;
+      background: linear-gradient(0deg, rgba(0,0,0,.28), rgba(0,0,0,.12));
     }
-    .card-video-hint {
-      position: absolute; inset: 0; z-index: 2; display: flex; align-items: center; justify-content: center;
-      gap: 8px; padding: 12px; text-align: center;
-      color: #fff; font: 800 13px/1.4 var(--font-ui); letter-spacing: .02em;
-      background: linear-gradient(0deg, rgba(0,0,0,.55), rgba(0,0,0,.15));
-      transition: opacity .25s ease; pointer-events: none;
+    /* 전경(텍스트·라벨·버튼)은 기본적으로 영상 위에 표시 */
+    .work-card[data-card-video] > *:not(.card-bg-video):not(.card-bg-video-scrim) {
+      position: relative; z-index: 1;
+      transition: opacity .28s ease, visibility .28s;
     }
-    .card-video.is-playing .card-video-hint { opacity: 0; }
-    .card-video::after {
-      content: ""; position: absolute; z-index: 1; inset: 0;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.06); border-radius: 12px; pointer-events: none;
+    /* 재생 중: 배경 영상 표시 + 전경 텍스트 잠시 숨김(공간은 유지해 칸 규격 고정) */
+    .work-card[data-card-video].video-active .card-bg-video,
+    .work-card[data-card-video].video-active .card-bg-video-scrim { opacity: 1; visibility: visible; }
+    .work-card[data-card-video].video-active > *:not(.card-bg-video):not(.card-bg-video-scrim) {
+      opacity: 0; visibility: hidden;
     }
-    @media (hover: none) {
-      .card-video-hint::before { content: "▶ "; }
-    }
+    .work-card.featured[data-card-video].video-active::after { opacity: 0; }
 
     /* ── 라이트박스(문서·영상 뷰어) ─────────────────────────────── */
     .media-modal {
@@ -935,16 +936,14 @@
           <p class="section-lead">프로젝트마다 무엇을 만들었는지보다 어떤 문제를 발견하고, 어떤 판단으로 해결했는지를 먼저 보여줍니다.</p>
         </div>
         <div class="work-grid">
-          <article class="work-card large featured reveal">
+          <article class="work-card large featured reveal" data-card-video aria-label="컴스톡 — 마우스를 올리면 플레이 영상이 배경으로 재생됩니다">
+            <video class="card-bg-video" src="assets/portfolio/comstock/gameplay.mp4" muted loop playsinline preload="metadata"></video>
+            <span class="card-bg-video-scrim" aria-hidden="true"></span>
             <div class="work-label"><span>PROJECT 01 · SURVIVOR-LIKE</span><span class="work-status">TEAM PROJECT</span></div>
             <div><h3>COM<br>STOCK</h3><p>게임의 핵심 구조를 기준으로 팀의 의견을 조율하고, 제한된 일정 안에서 범위를 재설정해 완성까지 이끈 뱀파이어 서바이버류 프로젝트입니다.</p><dl class="project-facts"><div><dt>역할</dt><dd>팀장 · 기획 리드</dd></div><div><dt>팀 / 기간</dt><dd>5인 · 2026.08 · 8주</dd></div><div><dt>결과</dt><dd>개발 완료 · itch.io 출시 · 플레이 가능</dd></div></dl></div>
             <div class="card-media">
               <!-- EDITABLE: 기획서·스크린샷이 준비되면 아래 .doc-actions 안에 doc-open 버튼을 추가하세요.
                    권장 경로: assets/portfolio/comstock/ (cover.webp / planning-document.pdf / screenshots/) -->
-              <figure class="card-video" data-card-video aria-label="컴스톡 플레이 영상 미리보기">
-                <video src="assets/portfolio/comstock/gameplay.mp4" muted loop playsinline preload="metadata"></video>
-                <figcaption class="card-video-hint">마우스를 올리면 플레이 영상이 재생됩니다</figcaption>
-              </figure>
               <div class="doc-actions">
                 <a class="doc-open" href="https://noah-kim.itch.io/comstock-zombie-survival" target="_blank" rel="noopener noreferrer">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"/></svg>
@@ -1309,42 +1308,35 @@
       });
     })();
 
-    /* ── 카드 내 인라인 영상: 마우스 오버 시 재생, 벗어나면 정지 ──── */
+    /* ── 카드 배경 영상: 마우스 오버 시 재생(텍스트 숨김), 벗어나면 정지(텍스트 복귀) ── */
     (() => {
       const hoverCapable = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-      document.querySelectorAll('[data-card-video]').forEach(figure => {
-        const video = figure.querySelector('video');
+      document.querySelectorAll('[data-card-video]').forEach(card => {
+        const video = card.querySelector('.card-bg-video');
         if (!video) return;
         video.muted = true; // 자동 재생을 위해 항상 음소거
-        figure.setAttribute('tabindex', '0');
-        figure.setAttribute('role', 'button');
-        figure.setAttribute('aria-pressed', 'false');
 
         const play = () => {
           const p = video.play();
           if (p && typeof p.catch === 'function') p.catch(() => {});
-          figure.classList.add('is-playing');
-          figure.setAttribute('aria-pressed', 'true');
+          card.classList.add('video-active');
         };
-        const stop = (reset = true) => {
+        const stop = () => {
           video.pause();
-          if (reset) { try { video.currentTime = 0; } catch (e) {} }
-          figure.classList.remove('is-playing');
-          figure.setAttribute('aria-pressed', 'false');
+          try { video.currentTime = 0; } catch (e) {}
+          card.classList.remove('video-active');
         };
-        const toggle = () => (video.paused ? play() : stop());
 
         if (hoverCapable) {
-          figure.addEventListener('mouseenter', play);
-          figure.addEventListener('mouseleave', () => stop(true));
+          card.addEventListener('mouseenter', play);
+          card.addEventListener('mouseleave', stop);
         }
-        // 터치/클릭(모바일 포함): 눌러서 재생·정지 토글
-        figure.addEventListener('click', toggle);
-        figure.addEventListener('keydown', (event) => {
-          if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggle(); }
+        // 터치/클릭(모바일 포함): 카드를 눌러 재생·정지 토글.
+        // 단, 카드 안의 링크/버튼 클릭은 영상 토글 대신 원래 동작을 수행.
+        card.addEventListener('click', (event) => {
+          if (event.target.closest('a, button')) return;
+          card.classList.contains('video-active') ? stop() : play();
         });
-        // 포커스가 벗어나면 정지(키보드 사용자)
-        figure.addEventListener('blur', () => { if (!hoverCapable) stop(false); });
       });
     })();
   </script>
