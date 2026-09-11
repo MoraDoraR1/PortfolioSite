@@ -75,11 +75,12 @@ python3 -m http.server 8000
 ### 공개 URL
 
 ```
-https://moradorar1.github.io/portfoliosite/
+https://moradorar1.github.io/PortfolioSite/
 ```
 
-> 저장소/소유자 이름의 대소문자와 무관하게 URL은 소문자로 제공됩니다.
-> 실제 URL은 Settings → Pages 상단에 표시되는 값을 최종 확인하세요.
+> 경로(`/PortfolioSite/`)는 저장소 이름의 대소문자를 그대로 지켜야 합니다.
+> 소문자(`/portfoliosite/`)로는 404가 납니다. 실제 URL은
+> Settings → Pages 상단의 "Your site is live at ..." 값을 그대로 사용하세요.
 
 ## 공개 전 체크리스트 (개인정보)
 
