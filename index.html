@@ -325,6 +325,50 @@
     .analysis-details dt { margin-bottom: 5px; color: var(--ash); font-size: 10px; font-weight: 900; letter-spacing: .08em; }
     .analysis-details dd { margin: 0; color: var(--slate); font-size: 13px; line-height: 1.65; word-break: keep-all; }
 
+    /* ── GAME LOG: 이외 게임들 구분선 + 그리드 ─────────────────── */
+    .game-log-divider {
+      position: relative; margin: 72px 0 0; height: 4px; border-radius: 2px;
+      background: var(--midnight); display: flex; align-items: center; justify-content: center;
+    }
+    .game-log-divider-label {
+      position: absolute; padding: 0 16px; background: var(--sky);
+      color: var(--midnight); font: 400 22px/1 var(--font-pixel); letter-spacing: .06em;
+    }
+    .paper-section .game-log-divider-label { background: var(--paper); }
+    .other-heading { margin: 30px 0 0; color: var(--midnight); font-size: clamp(22px, 3vw, 30px); font-weight: 900; letter-spacing: -.02em; }
+    .other-heading small { margin-left: 10px; color: var(--ash); font-size: 13px; font-weight: 800; letter-spacing: 0; }
+    .other-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 18px; margin-top: 28px;
+    }
+    .other-card {
+      display: flex; flex-direction: column; overflow: hidden;
+      border: 1px solid var(--sky); border-radius: 12px; background: var(--paper);
+      box-shadow: var(--shadow); transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+    .other-cover { position: relative; margin: 0; aspect-ratio: 460 / 215; background: #10141c; overflow: hidden; }
+    .other-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .other-cover--noimg { display: flex; align-items: center; justify-content: center; padding: 12px; background: linear-gradient(135deg, #2b3a55, #1a2233); }
+    .other-noimg-name { color: #eaf1f8; font: 800 16px/1.3 var(--font-ui); text-align: center; word-break: keep-all; }
+    .other-rank {
+      position: absolute; top: 8px; left: 8px; min-width: 26px; height: 22px; padding: 0 7px;
+      display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 6px; background: rgba(15,20,28,.72); color: #fff;
+      font: 400 16px/1 var(--font-pixel); letter-spacing: .02em;
+    }
+    .other-meta { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 12px 14px 14px; }
+    .other-meta h4 { margin: 0; color: var(--midnight); font-size: 14px; font-weight: 800; letter-spacing: -.01em; word-break: keep-all; }
+    .other-time { flex: none; color: var(--accent-ink); font-size: 13px; font-weight: 800; white-space: nowrap; }
+    @media (hover: hover) and (pointer: fine) {
+      .other-card:hover { transform: translateY(-4px); border-color: rgba(110,151,199,.5); box-shadow: 0 16px 34px rgba(15,34,52,.12); }
+      .other-card:hover .other-cover img { transform: scale(1.04); transition: transform .3s ease; }
+    }
+    @media (max-width: 620px) {
+      .other-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .other-meta { flex-direction: column; gap: 3px; padding: 10px 11px 12px; }
+      .game-log-divider { margin-top: 56px; }
+    }
+
     .work-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; margin-top: 54px; }
     .work-card { position: relative; min-height: 460px; padding: 30px; display: flex; flex-direction: column; justify-content: space-between; gap: 44px; overflow: hidden; border: 1px solid rgba(35,38,41,.08); border-radius: 16px; background: var(--paper); box-shadow: var(--shadow); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
     .work-card.large { grid-column: span 7; }
@@ -940,6 +984,178 @@
             <span class="tag">SURVIVAL SANDBOX</span><div class="number">05</div><h3>ARK: SURVIVAL EVOLVED</h3>
             <p>206.6시간 · 오픈월드 생존 샌드박스</p><div class="field-list"><span>TAMING</span><span>OWNERSHIP</span><span>COMMUNITY</span></div>
             <details class="analysis-details"><summary>분석 보기</summary><dl><div><dt>강점</dt><dd>높은 자유도와 생물 길들이기, 멀티플레이의 사회적 관계가 강한 애착을 만듭니다.</dd></div><div><dt>아쉬운 점</dt><dd>성능과 서버 문제, 반복 노동, PVP 격차가 누적된 시간의 가치를 훼손할 수 있습니다.</dd></div><div><dt>기획 인사이트</dt><dd>플레이어가 쌓은 시간과 노력은 소유감이 되고, 소유감은 자연스럽게 커뮤니티로 이어집니다.</dd></div></dl></details>
+          </article>
+        </div>
+        <div class="game-log-divider reveal" role="separator" aria-label="이외 게임들 구분선">
+          <span class="game-log-divider-label">OTHER GAMES</span>
+        </div>
+        <div class="reveal">
+          <h3 class="other-heading">이외 게임들 <small>10시간 이상 · 플레이 시간순</small></h3>
+        </div>
+        <div class="other-grid">
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/108600.jpg" alt="Project Zomboid 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">01</span></figure>
+            <div class="other-meta"><h4>Project Zomboid</h4><span class="other-time">139.2시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/1203620.jpg" alt="Enshrouded 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">02</span></figure>
+            <div class="other-meta"><h4>Enshrouded</h4><span class="other-time">128.7시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover other-cover--noimg"><span class="other-noimg-name">Overwatch</span><span class="other-rank">03</span></figure>
+            <div class="other-meta"><h4>Overwatch</h4><span class="other-time">113.7시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/892970.jpg" alt="Valheim 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">04</span></figure>
+            <div class="other-meta"><h4>Valheim</h4><span class="other-time">111.5시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/282400.jpg" alt="SuperPower 2 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">05</span></figure>
+            <div class="other-meta"><h4>SuperPower 2</h4><span class="other-time">95.2시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/739630.jpg" alt="Phasmophobia 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">06</span></figure>
+            <div class="other-meta"><h4>Phasmophobia</h4><span class="other-time">89.7시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/305620.jpg" alt="The Long Dark 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">07</span></figure>
+            <div class="other-meta"><h4>The Long Dark</h4><span class="other-time">87시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/275850.jpg" alt="No Man's Sky 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">08</span></figure>
+            <div class="other-meta"><h4>No Man's Sky</h4><span class="other-time">77.5시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/2246340.jpg" alt="Monster Hunter Wilds 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">09</span></figure>
+            <div class="other-meta"><h4>Monster Hunter Wilds</h4><span class="other-time">73.5시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/4000.jpg" alt="Garry's Mod 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">10</span></figure>
+            <div class="other-meta"><h4>Garry's Mod</h4><span class="other-time">69.8시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/239140.jpg" alt="Dying Light 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">11</span></figure>
+            <div class="other-meta"><h4>Dying Light</h4><span class="other-time">62.9시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/403640.jpg" alt="Dishonored 1 · 2 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">12</span></figure>
+            <div class="other-meta"><h4>Dishonored 1 · 2</h4><span class="other-time">50.7시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/648800.jpg" alt="Raft 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">13</span></figure>
+            <div class="other-meta"><h4>Raft</h4><span class="other-time">50.7시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/962130.jpg" alt="Grounded 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">14</span></figure>
+            <div class="other-meta"><h4>Grounded</h4><span class="other-time">47.8시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/304930.jpg" alt="Unturned 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">15</span></figure>
+            <div class="other-meta"><h4>Unturned</h4><span class="other-time">43.9시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/286160.jpg" alt="Tabletop Simulator 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">16</span></figure>
+            <div class="other-meta"><h4>Tabletop Simulator</h4><span class="other-time">41.8시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/1621690.jpg" alt="Core Keeper 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">17</span></figure>
+            <div class="other-meta"><h4>Core Keeper</h4><span class="other-time">38.4시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/298110.jpg" alt="Far Cry 4 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">18</span></figure>
+            <div class="other-meta"><h4>Far Cry 4</h4><span class="other-time">36.2시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/3041230.jpg" alt="Windrose 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">19</span></figure>
+            <div class="other-meta"><h4>Windrose</h4><span class="other-time">35.8시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/2661300.jpg" alt="Grounded 2 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">20</span></figure>
+            <div class="other-meta"><h4>Grounded 2</h4><span class="other-time">33.8시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/1604030.jpg" alt="V Rising 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">21</span></figure>
+            <div class="other-meta"><h4>V Rising</h4><span class="other-time">33.4시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/22130.jpg" alt="Hearts of Iron II 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">22</span></figure>
+            <div class="other-meta"><h4>Hearts of Iron II</h4><span class="other-time">31.1시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/1222670.jpg" alt="The Sims 4 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">23</span></figure>
+            <div class="other-meta"><h4>The Sims 4</h4><span class="other-time">31시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/1290000.jpg" alt="PowerWash Simulator 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">24</span></figure>
+            <div class="other-meta"><h4>PowerWash Simulator</h4><span class="other-time">29.9시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/553850.jpg" alt="Helldivers 2 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">25</span></figure>
+            <div class="other-meta"><h4>Helldivers 2</h4><span class="other-time">28.9시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/729040.jpg" alt="Borderlands: GOTY 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">26</span></figure>
+            <div class="other-meta"><h4>Borderlands: GOTY</h4><span class="other-time">28.8시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/1944360.jpg" alt="Rune Teller 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">27</span></figure>
+            <div class="other-meta"><h4>Rune Teller</h4><span class="other-time">25.2시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/550.jpg" alt="Left 4 Dead 2 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">28</span></figure>
+            <div class="other-meta"><h4>Left 4 Dead 2</h4><span class="other-time">23.5시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/534380.jpg" alt="Dying Light 2 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">29</span></figure>
+            <div class="other-meta"><h4>Dying Light 2</h4><span class="other-time">21.6시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/3527290.jpg" alt="PEAK 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">30</span></figure>
+            <div class="other-meta"><h4>PEAK</h4><span class="other-time">21.3시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/1149460.jpg" alt="ICARUS 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">31</span></figure>
+            <div class="other-meta"><h4>ICARUS</h4><span class="other-time">20시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/2115760.jpg" alt="Oppidum 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">32</span></figure>
+            <div class="other-meta"><h4>Oppidum</h4><span class="other-time">19.8시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/1151640.jpg" alt="Horizon Zero Dawn 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">33</span></figure>
+            <div class="other-meta"><h4>Horizon Zero Dawn</h4><span class="other-time">19.4시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/1966720.jpg" alt="Lethal Company 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">34</span></figure>
+            <div class="other-meta"><h4>Lethal Company</h4><span class="other-time">18시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/1244460.jpg" alt="Jurassic World Evolution 2 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">35</span></figure>
+            <div class="other-meta"><h4>Jurassic World Evolution 2</h4><span class="other-time">16.9시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/2271930.jpg" alt="IfSunSets 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">36</span></figure>
+            <div class="other-meta"><h4>IfSunSets</h4><span class="other-time">15시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/381210.jpg" alt="Dead by Daylight 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">37</span></figure>
+            <div class="other-meta"><h4>Dead by Daylight</h4><span class="other-time">14.8시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/2904000.jpg" alt="The Spell Brigade 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">38</span></figure>
+            <div class="other-meta"><h4>The Spell Brigade</h4><span class="other-time">14.7시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/2870920.jpg" alt="Restaurats 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">39</span></figure>
+            <div class="other-meta"><h4>Restaurats</h4><span class="other-time">12.6시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/977950.jpg" alt="A Dance of Fire and Ice 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">40</span></figure>
+            <div class="other-meta"><h4>A Dance of Fire and Ice</h4><span class="other-time">11.4시간</span></div>
+          </article>
+          <article class="other-card">
+            <figure class="other-cover"><img src="assets/game-titles/steam/219740.jpg" alt="Don't Starve 타이틀 이미지" width="460" height="215" loading="lazy"><span class="other-rank">41</span></figure>
+            <div class="other-meta"><h4>Don't Starve</h4><span class="other-time">10.3시간</span></div>
           </article>
         </div>
       </div>
