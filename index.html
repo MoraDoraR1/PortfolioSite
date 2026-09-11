@@ -109,7 +109,7 @@
       padding: calc(128px + env(safe-area-inset-top)) 0 calc(74px + env(safe-area-inset-bottom));
       isolation: isolate; position: relative;
     }
-    .hero-grid { display: grid; grid-template-columns: 1fr; gap: clamp(28px, 5vw, 72px); align-items: center; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(190px, 260px); gap: clamp(28px, 5vw, 72px); align-items: center; }
     .hero-copy { position: relative; z-index: 2; padding-bottom: 52px; }
     .eyebrow { margin: 0 0 32px; font-size: 13px; font-weight: 800; letter-spacing: .14em; color: var(--slate); }
     .hero h1 {
@@ -208,10 +208,6 @@
     .profile-identity { display: flex; align-items: center; gap: 18px; margin-bottom: 14px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
     .profile-photo { width: 124px; flex: 0 0 124px; aspect-ratio: 1; margin: 0; overflow: hidden; border-radius: 12px; background: var(--sky); }
     .profile-photo img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: 50% 38%; }
-    /* PROFILE 안으로 옮겨온 INTRO 폴라로이드 칸 */
-    .profile-portrait { width: auto; max-width: none; justify-self: stretch; margin: 4px 4px 20px; transform: rotate(-1.4deg); }
-    .profile-portrait .portrait-screen { aspect-ratio: 4 / 5; }
-    .profile-portrait figcaption strong small { display: block; margin-top: 4px; color: var(--slate); font-size: 12px; font-weight: 700; letter-spacing: .06em; }
     /* PROFILE 슬라이드 안에 병합된 RESUME 구분 */
     .resume-in-profile { margin-top: 96px; padding-top: 40px; border-top: 2px solid var(--midnight); }
     .meta-list { list-style: none; margin: 0; padding: 0; }
@@ -656,6 +652,12 @@
             <a class="page-step-link" href="#portfolio" data-page-target="portfolio">NEXT · PORTFOLIO →</a>
           </nav>
         </div>
+        <figure class="hero-portrait" aria-label="오승명 프로필 사진">
+          <div class="portrait-screen">
+            <img src="assets/profile-oh-seung-myung.jpg" alt="작업실에 앉아 있는 오승명" width="690" height="920">
+          </div>
+          <figcaption><strong>오승명</strong><span>GAME<br>DESIGNER</span></figcaption>
+        </figure>
       </div>
       <a class="scroll-cue" href="#profile" data-document-open="0" aria-label="아래 포트폴리오 섹션으로 이동">
         <span>SCROLL DOWN</span>
@@ -687,12 +689,12 @@
                 <div class="document-slide-inner">
         <div class="profile-grid">
           <aside class="profile-card reveal" aria-label="오승명 프로필 정보">
-            <figure class="hero-portrait profile-portrait" aria-label="오승명 프로필 사진">
-              <div class="portrait-screen">
+            <div class="profile-identity">
+              <figure class="profile-photo">
                 <img src="assets/profile-oh-seung-myung.jpg" alt="작업실에 앉아 있는 오승명" width="690" height="920" loading="lazy">
-              </div>
-              <figcaption><strong>오승명<small>Oh Seung-myung</small></strong><span>GAME<br>DESIGNER</span></figcaption>
-            </figure>
+              </figure>
+              <p class="profile-name">오승명<small>Oh Seung-myung</small></p>
+            </div>
             <ul class="meta-list">
               <li><span>직무</span><strong>게임 기획자</strong></li>
               <li><span>생년월일</span><strong>2001. 04. 21</strong></li>
