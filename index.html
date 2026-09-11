@@ -468,6 +468,34 @@
     .work-card.featured .doc-open:disabled { border-color: rgba(255,255,255,.24); color: rgba(255,255,255,.5); background: transparent; }
     .doc-count { font-weight: 700; opacity: .7; }
 
+    /* ── 카드 내 인라인 영상(마우스 오버 시 재생) ────────────────── */
+    .card-media { margin-top: 22px; }
+    .card-video {
+      position: relative; margin: 0 0 14px; width: 100%; aspect-ratio: 16 / 9;
+      overflow: hidden; border-radius: 12px; background: #000;
+      border: 1px solid rgba(255,255,255,.14); cursor: pointer;
+    }
+    .work-card:not(.featured) .card-video { border-color: var(--line); }
+    .card-video video {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    .card-video-hint {
+      position: absolute; inset: 0; z-index: 2; display: flex; align-items: center; justify-content: center;
+      gap: 8px; padding: 12px; text-align: center;
+      color: #fff; font: 800 13px/1.4 var(--font-ui); letter-spacing: .02em;
+      background: linear-gradient(0deg, rgba(0,0,0,.55), rgba(0,0,0,.15));
+      transition: opacity .25s ease; pointer-events: none;
+    }
+    .card-video.is-playing .card-video-hint { opacity: 0; }
+    .card-video::after {
+      content: ""; position: absolute; z-index: 1; inset: 0;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.06); border-radius: 12px; pointer-events: none;
+    }
+    @media (hover: none) {
+      .card-video-hint::before { content: "▶ "; }
+    }
+
     /* ── 라이트박스(문서·영상 뷰어) ─────────────────────────────── */
     .media-modal {
       position: fixed; inset: 0; z-index: 200; display: grid; place-items: center;
@@ -910,25 +938,19 @@
           <article class="work-card large featured reveal">
             <div class="work-label"><span>PROJECT 01 · SURVIVOR-LIKE</span><span class="work-status">TEAM PROJECT</span></div>
             <div><h3>COM<br>STOCK</h3><p>게임의 핵심 구조를 기준으로 팀의 의견을 조율하고, 제한된 일정 안에서 범위를 재설정해 완성까지 이끈 뱀파이어 서바이버류 프로젝트입니다.</p><dl class="project-facts"><div><dt>역할</dt><dd>팀장 · 기획 리드</dd></div><div><dt>팀 / 기간</dt><dd>5인 · 2026.08 · 8주</dd></div><div><dt>결과</dt><dd>개발 완료 · itch.io 출시 · 플레이 가능</dd></div></dl></div>
-            <div class="doc-actions">
-              <!-- EDITABLE: 기획서·스크린샷이 준비되면 아래 형식으로 버튼을 추가하세요.
-                   예) <button class="doc-open" data-media-kind="document"
-                         data-media-title="컴스톡 기획서"
-                         data-media-items='[{"type":"pdf","src":"assets/portfolio/comstock/planning-document.pdf"}]'>...</button>
+            <div class="card-media">
+              <!-- EDITABLE: 기획서·스크린샷이 준비되면 아래 .doc-actions 안에 doc-open 버튼을 추가하세요.
                    권장 경로: assets/portfolio/comstock/ (cover.webp / planning-document.pdf / screenshots/) -->
-              <button type="button" class="doc-open" data-media-kind="video"
-                data-media-title="컴스톡 플레이 영상"
-                data-media-caption="뱀서라이크 장르 5인 팀 프로젝트 — 실제 플레이 영상"
-                data-media-items='[
-                  {"type":"video","src":"assets/portfolio/comstock/gameplay.mp4"}
-                ]'>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg>
-                <span>플레이 영상 보기</span>
-              </button>
-              <a class="doc-open" href="https://noah-kim.itch.io/comstock-zombie-survival" target="_blank" rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"/></svg>
-                <span>itch.io에서 플레이</span>
-              </a>
+              <figure class="card-video" data-card-video aria-label="컴스톡 플레이 영상 미리보기">
+                <video src="assets/portfolio/comstock/gameplay.mp4" muted loop playsinline preload="metadata"></video>
+                <figcaption class="card-video-hint">마우스를 올리면 플레이 영상이 재생됩니다</figcaption>
+              </figure>
+              <div class="doc-actions">
+                <a class="doc-open" href="https://noah-kim.itch.io/comstock-zombie-survival" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"/></svg>
+                  <span>itch.io에서 플레이</span>
+                </a>
+              </div>
             </div>
           </article>
           <article class="work-card small reveal">
@@ -1284,6 +1306,45 @@
         if (event.key === 'Escape') close();
         else if (event.key === 'ArrowLeft') go(-1);
         else if (event.key === 'ArrowRight') go(1);
+      });
+    })();
+
+    /* ── 카드 내 인라인 영상: 마우스 오버 시 재생, 벗어나면 정지 ──── */
+    (() => {
+      const hoverCapable = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      document.querySelectorAll('[data-card-video]').forEach(figure => {
+        const video = figure.querySelector('video');
+        if (!video) return;
+        video.muted = true; // 자동 재생을 위해 항상 음소거
+        figure.setAttribute('tabindex', '0');
+        figure.setAttribute('role', 'button');
+        figure.setAttribute('aria-pressed', 'false');
+
+        const play = () => {
+          const p = video.play();
+          if (p && typeof p.catch === 'function') p.catch(() => {});
+          figure.classList.add('is-playing');
+          figure.setAttribute('aria-pressed', 'true');
+        };
+        const stop = (reset = true) => {
+          video.pause();
+          if (reset) { try { video.currentTime = 0; } catch (e) {} }
+          figure.classList.remove('is-playing');
+          figure.setAttribute('aria-pressed', 'false');
+        };
+        const toggle = () => (video.paused ? play() : stop());
+
+        if (hoverCapable) {
+          figure.addEventListener('mouseenter', play);
+          figure.addEventListener('mouseleave', () => stop(true));
+        }
+        // 터치/클릭(모바일 포함): 눌러서 재생·정지 토글
+        figure.addEventListener('click', toggle);
+        figure.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggle(); }
+        });
+        // 포커스가 벗어나면 정지(키보드 사용자)
+        figure.addEventListener('blur', () => { if (!hoverCapable) stop(false); });
       });
     })();
   </script>
