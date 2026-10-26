@@ -164,3 +164,10 @@ html,body{height:100%;overflow:hidden}body{background:#bdc9d7;background-image:r
 @media(max-width:1100px){.taskbar-location{width:220px;min-width:180px}.taskbar #task-buttons button{padding:9px 10px}}
 @media(max-width:620px){.taskbar-location{width:auto;min-width:0;flex:1;height:33px;padding:4px 7px;gap:7px}.taskbar-location>svg{width:14px;height:14px}.location-caption{font-size:7px}.location-path{font-size:10px}.taskbar-location #page-counter{font-size:8px;padding-left:2px}.taskbar #task-buttons{display:none}.taskbar-pager{gap:3px;padding-left:4px}.taskbar .taskbar-pager button{width:26px}.taskbar .start{min-width:56px;font-size:11px;padding:8px 6px}.wheel-assistant{margin-left:0}}
 @media(max-width:350px){.taskbar-location{gap:5px;padding:4px 5px}.taskbar-location #page-counter{display:none}.location-path{font-size:9px}.taskbar-location>svg{width:13px;height:13px}}
+/* Give document windows more room inside the desktop, keeping other windows unchanged. */
+.desktop-page.document-page{padding:0 0 2px}
+.desktop-page.document-page .document-window.maximized{inset:0 0 2px!important}
+@media(max-width:620px){
+  .desktop-page.document-page{padding:4px 6px}
+  .desktop-page.document-page .document-window.maximized{inset:4px 6px!important}
+}
