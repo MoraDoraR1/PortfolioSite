@@ -97,3 +97,39 @@ html,body{height:100%;overflow:hidden}body{background:#bdc9d7;background-image:r
 @media(min-width:1101px){.project-dialog .project-overview{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:36px}.project-dialog #project-loop{aspect-ratio:16/10;max-height:55dvh}.project-dialog .project-contribution li p{font-size:14px;line-height:1.9}}
 @media(max-width:800px){#detail.project-dialog{width:calc(100vw - 22px);height:calc(100dvh - 30px)}}
 @media(max-width:620px){#detail.project-dialog{width:calc(100vw - 12px);height:calc(100dvh - 18px)}}
+/* Keep each folder and its artwork together when a grid row becomes short. */
+.portfolio-explorer .project-grid{--project-folder-width:88px}
+.portfolio-explorer .project-grid button{min-height:190px;gap:0}
+.portfolio-explorer .project-grid button>.folder{flex:0 0 auto;width:var(--project-folder-width);height:auto;aspect-ratio:88 / 62;margin-top:12px;margin-bottom:16px;position:relative}
+.portfolio-explorer .project-grid button>.folder>.folder-art{width:44%;height:62%;left:12%;top:18%;max-width:100%;max-height:100%;display:block}
+.portfolio-explorer .project-grid button>.folder>i{font-size:clamp(8px,1vw,11px);right:8%;bottom:10%;line-height:1;padding:1px}
+.portfolio-explorer .project-grid button>b,.portfolio-explorer .project-grid button>small{flex-shrink:0}
+@media(max-height:800px) and (min-width:621px){.portfolio-explorer .project-grid{--project-folder-width:64px}.portfolio-explorer .project-grid button{min-height:160px}.portfolio-explorer .project-grid button>.folder{margin-bottom:12px}}
+@media(max-width:620px){.portfolio-explorer .project-grid{--project-folder-width:65px}.portfolio-explorer .project-grid button{min-height:170px}}
+/* Group the file icon and readable metadata instead of scattering tiny labels. */
+.portfolio-explorer .explorer-intro h1{font-size:clamp(28px,2.3vw,38px);line-height:1.3;letter-spacing:-1px}
+.portfolio-explorer .explorer-intro p{font-size:14px;line-height:1.75;color:#5d6b7d}
+.portfolio-explorer .project-grid{--project-folder-width:92px;gap:18px;align-items:stretch}
+.portfolio-explorer .project-grid button{display:grid;grid-template-columns:112px minmax(0,1fr);grid-template-rows:auto auto auto;column-gap:24px;row-gap:7px;align-content:center;justify-content:initial;align-items:start;text-align:left;padding:27px 28px;min-height:190px}
+.portfolio-explorer .project-grid button>.folder{grid-column:1;grid-row:1/4;align-self:center;justify-self:center;margin:12px 0 0}
+.portfolio-explorer .project-grid button>b{grid-column:2;grid-row:1;align-self:auto;padding:0;font:600 18px/1.4 Pretendard,sans-serif;letter-spacing:.1px;white-space:normal;overflow-wrap:anywhere;color:#30435f}
+.portfolio-explorer .project-grid button>small{grid-column:2;grid-row:2;align-self:auto;margin:0;font-size:13px;line-height:1.6;color:#5f728e}
+.portfolio-explorer .project-grid .file-summary{grid-column:2;grid-row:3;font-size:12px;line-height:1.75;color:#6b7d95;word-break:keep-all;overflow-wrap:anywhere}
+.portfolio-explorer .project-grid button:hover b{background:transparent;color:#233f65}.portfolio-explorer .project-grid button:hover{background:#e8eef6;border:1px solid #92a5bf}
+.project-dialog .project-overview{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(24px,2.5vw,42px)}
+.project-dialog .project-heading h2{font-size:clamp(26px,2.5vw,38px)!important;line-height:1.25}
+.project-dialog .project-summary{font-size:16px!important;line-height:1.85!important;max-width:65ch}
+.project-dialog .project-contribution>h3{font-size:23px;margin:24px 0 20px}
+.project-dialog .project-contribution h4{font-size:17px;line-height:1.5;margin-bottom:7px}
+.project-dialog .project-contribution li p{font-size:15px;line-height:1.85;max-width:65ch;color:#56677d}
+.project-dialog .project-contribution li{padding-left:40px;padding-bottom:18px}
+.project-dialog .project-contribution li:before{top:2px;font-size:19px}
+.project-dialog .facts span{font-size:12px!important;padding:6px 12px!important}
+.project-dialog .preview-caption{font-size:11px;line-height:1.5}
+.project-dialog .release-metrics-grid dt{font-size:13px!important}.project-dialog .release-metrics-grid dd{font-size:32px!important}
+@media(min-width:1101px) and (max-width:1450px){.portfolio-explorer .project-grid{--project-folder-width:76px}.portfolio-explorer .project-grid button{grid-template-columns:86px minmax(0,1fr);column-gap:17px;padding:22px 18px}.portfolio-explorer .project-grid button>b{font-size:16px}.portfolio-explorer .project-grid button>small{font-size:12px}.portfolio-explorer .project-grid .file-summary{font-size:11px}}
+@media(max-width:1100px){.portfolio-explorer .project-grid{grid-template-columns:1fr;--project-folder-width:76px;gap:14px}.portfolio-explorer .project-grid button{grid-template-columns:92px minmax(0,1fr);padding:22px;column-gap:20px;min-height:150px}.portfolio-explorer .project-grid button>b{font-size:17px}.portfolio-explorer .project-grid button>small{font-size:12px}.portfolio-explorer .project-grid .file-summary{font-size:12px}}
+@media(max-width:800px){.project-dialog .project-overview{grid-template-columns:1fr;gap:26px}.project-dialog .project-contribution li p{font-size:14px}.project-dialog .project-contribution>h3{font-size:21px}}
+@media(max-width:620px){.portfolio-explorer .explorer-intro h1{font-size:27px}.portfolio-explorer .explorer-intro p{font-size:13px}.portfolio-explorer .project-grid{--project-folder-width:64px;gap:12px}.portfolio-explorer .project-grid button{grid-template-columns:70px minmax(0,1fr);column-gap:17px;row-gap:6px;padding:22px 15px;min-height:150px}.portfolio-explorer .project-grid button>b{font-size:16px}.portfolio-explorer .project-grid button>small{font-size:12px}.portfolio-explorer .project-grid .file-summary{font-size:11px}.project-dialog .project-summary{font-size:14px!important}.project-dialog .project-contribution h4{font-size:16px}.project-dialog .project-heading h2{font-size:25px!important}.project-dialog .facts span{font-size:11px!important}.project-dialog .project-contribution li p{font-size:14px}}
+@media(min-width:1101px){.portfolio-explorer .explorer-body{padding:24px 28px}.portfolio-explorer .explorer-intro{padding-bottom:16px}.portfolio-explorer .explorer-intro h1{font-size:30px;margin:8px 0}.portfolio-explorer .explorer-intro p{font-size:13px}.portfolio-explorer .project-grid{flex:1 0 auto;min-height:318px;margin-top:16px}.portfolio-explorer .project-grid button{min-height:150px;padding:20px 24px;row-gap:6px}}
+@media(max-width:1100px){.portfolio-explorer .project-grid{flex:1 0 auto;min-height:0}}
