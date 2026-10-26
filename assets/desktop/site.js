@@ -46,6 +46,8 @@ function go(index, focus = false, historyMode = 'push') {
     button.setAttribute('aria-pressed',String(i === index));
   });
   document.querySelector('#page-counter').textContent = `${String(index+1).padStart(2,'0')} / 06`;
+  document.querySelector('#current-folder-name').textContent = labels[index].replace(' ', '_');
+  document.querySelector('.taskbar-location').setAttribute('aria-label', '현재 폴더: ' + labels[index]);
   document.querySelector('#previous-page').title = index > 0 ? labels[index-1] + ' 폴더 열기' : '첫 번째 폴더입니다';
   document.querySelector('#next-page').title = index < pages.length-1 ? labels[index+1] + ' 폴더 열기' : '마지막 폴더입니다';
   document.querySelector('#previous-page').disabled = index === 0;
@@ -190,3 +192,53 @@ document.querySelector('#close-detail').addEventListener('click',()=>modal.close
 modal.addEventListener('close',()=>{content.querySelectorAll('video').forEach(v=>v.pause());content.replaceChildren();wheelAmount=0;lockedUntil=performance.now()+400;});
 function updateClock(){document.querySelector('#clock').textContent=new Intl.DateTimeFormat('ko-KR',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Asia/Seoul'}).format(new Date())}
 updateClock();setInterval(updateClock,30000);fromHash('replace');
+
+// A first-visit tray tip, available again on hover, focus or tap.
+const wheelHelpButton = document.querySelector('#wheel-help-toggle');
+const wheelHelp = document.querySelector('#wheel-help');
+const wheelAssistant = document.querySelector('.wheel-assistant');
+let helpPinned = false, helpHovered = false, helpFocused = false, helpIntro = false;
+let helpTimer;
+function renderWheelHelp() {
+  const open = helpPinned || helpHovered || helpFocused || helpIntro;
+  wheelHelp.hidden = !open;
+  wheelHelpButton.setAttribute('aria-expanded', String(open));
+}
+function dismissWheelHelp() {
+  helpPinned = helpHovered = helpFocused = helpIntro = false;
+  clearTimeout(helpTimer);
+  renderWheelHelp();
+}
+wheelAssistant.addEventListener('pointerenter', event => {
+  if(event.pointerType === 'mouse') {helpHovered = true;renderWheelHelp();}
+});
+wheelAssistant.addEventListener('pointerleave', event => {
+  if(event.pointerType === 'mouse') {helpHovered = false;renderWheelHelp();}
+});
+wheelAssistant.addEventListener('focusin', () => {helpFocused = true;renderWheelHelp();});
+wheelAssistant.addEventListener('focusout', event => {
+  if(!wheelAssistant.contains(event.relatedTarget)) {helpFocused = false;renderWheelHelp();}
+});
+wheelHelpButton.addEventListener('click', () => {
+  if(helpPinned) dismissWheelHelp();
+  else {helpPinned = true;helpIntro = false;clearTimeout(helpTimer);renderWheelHelp();}
+});
+document.querySelector('#wheel-help-close').addEventListener('click', () => {
+  wheelHelpButton.focus({preventScroll:true});dismissWheelHelp();
+});
+document.addEventListener('pointerdown', event => {
+  if(!wheelAssistant.contains(event.target)) dismissWheelHelp();
+});
+document.addEventListener('keydown', event => {
+  if(event.key === 'Escape' && !wheelHelp.hidden) {
+    if(wheelHelp.contains(document.activeElement)) wheelHelpButton.focus({preventScroll:true});
+    dismissWheelHelp();
+  }
+});
+try {
+  if(!sessionStorage.getItem('portfolio-wheel-tip-seen')) {
+    sessionStorage.setItem('portfolio-wheel-tip-seen','1');
+    helpIntro = true;renderWheelHelp();
+    helpTimer = setTimeout(() => {helpIntro = false;renderWheelHelp();},6500);
+  }
+} catch { /* Hover, keyboard focus and tap still work without storage. */ }

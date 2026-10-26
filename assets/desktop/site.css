@@ -142,3 +142,25 @@ html,body{height:100%;overflow:hidden}body{background:#bdc9d7;background-image:r
 .taskbar-pager #page-counter{font:10px monospace;color:#637c9b;min-width:43px;text-align:center;margin:0}
 .taskbar>.tray{margin-left:5px}.taskbar #task-buttons{flex:0 1 auto;min-width:0}
 @media(max-width:620px){#workspace{bottom:58px}.taskbar-pager{gap:4px;padding-left:5px}.taskbar .taskbar-pager button{width:28px;height:30px;font-size:17px}.taskbar-pager #page-counter{font-size:9px;min-width:37px}.taskbar>.tray{display:none}.taskbar #task-buttons{flex:1;min-width:0}.taskbar .start{min-width:58px;padding:8px}}
+/* A system-tray helper preserves the wheel hint without taking workspace height. */
+.wheel-assistant{position:relative;flex:0 0 auto;align-self:center;margin-left:2px}
+#wheel-help-toggle{display:grid;place-items:center;width:31px;height:31px;padding:3px;border:1px solid transparent;background:transparent;color:#5e7899}
+#wheel-help-toggle:hover,#wheel-help-toggle[aria-expanded="true"]{background:#edf1f5;border-color:#a5b4c8;box-shadow:inset 1px 1px #fff}
+.wheel-assistant svg{fill:none;stroke:currentColor;stroke-width:1.6}.wheel-assistant .mouse-wheel{fill:currentColor;stroke:none}#wheel-help-toggle svg{width:21px;height:26px}
+#wheel-help{position:absolute;right:-8px;bottom:46px;width:276px;max-width:calc(100vw - 24px);background:#f6f4e9;border:1px solid #8498b3;box-shadow:inset 1px 1px #fff,3px 4px #354e7020;z-index:2;color:#4f698c;cursor:default;animation:tip-arrive .18s ease-out}
+#wheel-help:after{content:'';position:absolute;bottom:-7px;right:18px;width:11px;height:11px;transform:rotate(45deg);background:#f6f4e9;border-right:1px solid #8498b3;border-bottom:1px solid #8498b3}
+.wheel-help-head{display:flex;justify-content:space-between;align-items:center;padding:6px 7px 5px 12px;border-bottom:1px solid #d9dce0;font:8px monospace;letter-spacing:.8px;color:#7b8ea6}
+#wheel-help-close{display:grid;place-items:center;width:22px;height:22px;font:17px monospace;color:#6e83a0;padding:0}#wheel-help-close:hover{background:#e1e7ed}
+.wheel-help-body{display:flex;align-items:center;gap:14px;padding:15px 17px 10px}.wheel-help-body>svg{width:30px;height:40px;flex-shrink:0}.wheel-help-body strong{display:block;font-size:13px;font-weight:650;line-height:1.5}.wheel-help-body span{display:block;font-size:10px;margin-top:4px;line-height:1.6;color:#7285a0}
+#wheel-help>p{font-size:9px;line-height:1.6;margin:0 14px 12px;padding-top:8px;border-top:1px dashed #cbd2dc;color:#788ba4}.wheel-help-body .touch-tip{display:none}
+@keyframes tip-arrive{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+@media(hover:none) and (pointer:coarse){.wheel-help-body .pointer-tip{display:none}.wheel-help-body .touch-tip{display:block}.wheel-help-body strong.touch-tip{font-size:12px}.wheel-help-body span.touch-tip{font-size:9px}}
+@media(max-width:620px){.wheel-assistant{margin-left:0}#wheel-help-toggle{width:27px;height:31px}#wheel-help{right:0;bottom:44px;width:266px}.taskbar-pager{gap:2px}.taskbar .taskbar-pager button{width:26px}}
+@media(prefers-reduced-motion:reduce){#wheel-help{animation:none}}
+/* Search-box styling used as a truthful, read-only current-location display. */
+.taskbar-location{display:flex;align-items:center;gap:10px;width:clamp(205px,22vw,300px);min-width:180px;height:34px;padding:4px 11px;background:#f7f8f3;border:1px solid #9eafc4;box-shadow:inset 1px 1px #c4ceda,inset -1px -1px white;flex-shrink:0;color:#4c6484}
+.taskbar-location>svg{width:17px;height:17px;fill:none;stroke:#7086a3;stroke-width:1.5;flex-shrink:0}.location-copy{min-width:0;display:flex;flex-direction:column;gap:2px}.location-caption{font-size:8px;line-height:1;color:#8999ad}.location-path{display:flex;align-items:baseline;font:11px/1.2 monospace;white-space:nowrap;min-width:0}.location-path>span{color:#8192a8}.location-path>strong{font-weight:600;color:#405d80;overflow:hidden;text-overflow:ellipsis}
+.taskbar-location #page-counter{font:9px monospace;color:#8393a8;padding-left:5px;margin-left:auto;flex-shrink:0}.taskbar #task-buttons{flex:1;min-width:0}.taskbar-pager{margin-left:0;gap:5px}.taskbar .tray{gap:10px}
+@media(max-width:1100px){.taskbar-location{width:220px;min-width:180px}.taskbar #task-buttons button{padding:9px 10px}}
+@media(max-width:620px){.taskbar-location{width:auto;min-width:0;flex:1;height:33px;padding:4px 7px;gap:7px}.taskbar-location>svg{width:14px;height:14px}.location-caption{font-size:7px}.location-path{font-size:10px}.taskbar-location #page-counter{font-size:8px;padding-left:2px}.taskbar #task-buttons{display:none}.taskbar-pager{gap:3px;padding-left:4px}.taskbar .taskbar-pager button{width:26px}.taskbar .start{min-width:56px;font-size:11px;padding:8px 6px}.wheel-assistant{margin-left:0}}
+@media(max-width:350px){.taskbar-location{gap:5px;padding:4px 5px}.taskbar-location #page-counter{display:none}.location-path{font-size:9px}.taskbar-location>svg{width:13px;height:13px}}
