@@ -62,3 +62,14 @@ html,body{height:100%;overflow:hidden}body{background:#bdc9d7;background-image:r
 /* Keep the published project URL visible and readable on narrow screens. */
 .release-url{display:block;font-size:11px;line-height:1.7;overflow-wrap:anywhere;word-break:normal;text-decoration:underline;text-underline-offset:3px}
 .release-source>span{display:block;font-size:10px;color:#657f9e;margin-bottom:5px}.release-summary{font-weight:650}
+
+/* Verified release snapshot: distinguish browser plays from downloads. */
+.release-metrics{margin:24px 0;padding:18px;border:1px solid #b7c6d8;background:#edf2f7}
+:is(#detail-content,.section-content) .release-metrics h3{font-size:16px;margin:0 0 15px;line-height:1.5}.release-metrics h3 small{display:block;font:10px monospace;color:#677f9c;margin-top:3px}
+.release-metrics-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0}
+.release-metrics-grid>div{display:flex;flex-direction:column;justify-content:space-between;border:1px solid #cbd6e3;background:#fafbf8;padding:12px;min-width:0}
+:is(#detail-content,.section-content) .release-metrics-grid dt{font-size:11px;font-weight:500;color:#556e8c;line-height:1.5}.release-metrics-grid dt small{display:block;font:9px/1.5 monospace;margin-top:3px;overflow-wrap:anywhere}
+:is(#detail-content,.section-content) .release-metrics-grid dd{font:28px/1.2 monospace;color:#354e70;margin:10px 0 0}
+:is(#detail-content,.section-content) .metrics-source{font-size:10px;line-height:1.7;color:#71829a;margin:14px 0 0}
+#resume .release-metrics{padding:12px}#resume .release-metrics-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:620px){.release-metrics{padding:12px}.release-metrics-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.release-metrics-grid>div{padding:10px}}
