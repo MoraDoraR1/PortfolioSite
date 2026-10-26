@@ -46,10 +46,6 @@ function go(index, focus = false, historyMode = 'push') {
     button.setAttribute('aria-pressed',String(i === index));
   });
   document.querySelector('#page-counter').textContent = `${String(index+1).padStart(2,'0')} / 06`;
-  document.querySelector('#folder-path').textContent = 'C:\\OH\\' + labels[index].replace(' ', '_');
-  const folderPosition = document.querySelector('#folder-position');
-  folderPosition.value = index;
-  folderPosition.setAttribute('aria-valuetext', `${labels[index]}, 6개 중 ${index+1}번째 폴더`);
   document.querySelector('#previous-page').title = index > 0 ? labels[index-1] + ' 폴더 열기' : '첫 번째 폴더입니다';
   document.querySelector('#next-page').title = index < pages.length-1 ? labels[index+1] + ' 폴더 열기' : '마지막 폴더입니다';
   document.querySelector('#previous-page').disabled = index === 0;
@@ -97,7 +93,6 @@ document.addEventListener('click',event => {
   const scans = event.target.closest('[data-media-items]');
   if(scans) openScans(scans);
 });
-document.querySelector('#folder-position').addEventListener('input', event => go(Number(event.target.value)));
 document.querySelector('#previous-page').addEventListener('click',()=>go(current-1,true));
 document.querySelector('#next-page').addEventListener('click',()=>go(current+1,true));
 // Nested documents retain vertical scrolling; only their boundaries advance the desktop.
