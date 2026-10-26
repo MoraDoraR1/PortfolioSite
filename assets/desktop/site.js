@@ -143,18 +143,38 @@ workspace.addEventListener('touchend',event => {
   touch=null;
 },{passive:true});
 workspace.addEventListener('touchcancel',()=>touch=null,{passive:true});
-function openDialog(name,html) {
+function openDialog(name,html,projectMode=false) {
+  modal.classList.toggle('project-dialog',projectMode);
   document.querySelectorAll('video').forEach(video=>video.pause());
   document.querySelector('#detail-title').textContent='▤ '+name;
   document.querySelector('#detail-path').textContent='C:\\OH\\Documents\\'+name;
   content.innerHTML=html;
   modal.showModal();content.scrollTop=0;
 }
+const projectDetails = {
+  comstock: {icon:'crosshair', summary:'5인 팀으로 완성하고 itch.io에 출시한 뱀서라이크 게임입니다.', contributions:[['핵심 구조 설계','부팀장과 게임의 핵심과 틀을 먼저 정리해 팀에 공유했습니다.'],['팀 의견 조율','개인의 선호보다 게임의 핵심에 부합하는지를 기준으로 의견을 정리했습니다.'],['개발 범위 조정','일정과 최종 목표를 확인하고 초기 아이템·무기 구성을 조정했습니다.']], steps:['핵심 정의','팀 기준 공유','범위 조정']},
+  tomorrow: {icon:'clock', summary:'2인 팀으로 진행한 방치형 클리커 프로젝트입니다.', contributions:[['업무 분배','팀장으로서 작업을 나누고 프로젝트를 진행했습니다.'],['콘셉트·시스템 기획','콘셉트와 시스템 기획서를 작성했습니다.'],['기능 구현','작성한 기획을 실제 기능 구현으로 연결했습니다.']], steps:['업무 분배','기획서 작성','기능 구현']},
+  dice: {icon:'dice', summary:'6인 팀의 부팀장으로 참여한 주사위 보드게임 프로젝트입니다.', contributions:[['일정 관리','팀의 작업 일정을 관리했습니다.'],['콘셉트 방향','프로젝트의 콘셉트 방향성을 제시했습니다.']], steps:['일정 관리','콘셉트 방향']},
+  space: {icon:'space', summary:'2인 팀으로 참여해 제18회 한국공간디자인 전국 공모전 특선을 수상한 프로젝트입니다.', contributions:[['건축 구조 기획','접근성을 고려해 공간의 구조를 기획했습니다.'],['공간 배치','이동 동선을 고려해 공간 배치를 계획했습니다.']], steps:['접근성','이동 동선','공간 배치']}
+};
 function openProject(key) {
   if(key==='contact') {openDialog('Contact.txt','<h2>연락하기</h2><p>게임 기획자 오승명</p>'+contactHTML);return;}
-  const project=projects[key];if(!project)return;
+  const project=projects[key], detail=projectDetails[key];if(!project || !detail)return;
   const number=Object.keys(projects).indexOf(key)+1;
-  openDialog(project.name,`<div class="project-heading"><span class="folder" aria-hidden="true"><i>0${number}</i></span><div><p>PROJECT FILE / 0${number}</p><h2>${project.name}</h2></div></div><div class="facts">${project.facts.split(' / ').map(fact=>`<span>${fact}</span>`).join('')}</div><div class="project-section-label">MY ROLE & CONTRIBUTION</div><p class="project-body">${project.text}</p>${project.extra}`);
+  const preview=key==='comstock'
+    ? '<div class="project-preview actual-preview"><video id="project-loop" controls muted loop playsinline preload="metadata" poster="assets/desktop/comstock.jpg" src="assets/portfolio/comstock/gameplay.mp4"></video><div class="preview-caption"><span>실제 플레이 영상 · 반복 재생</span><span>COMSTOCK / GAMEPLAY</span></div></div>'
+    : `<div class="project-preview concept-preview preview-${key}" role="img" aria-label="${project.name} 기여 내용 개념 애니메이션"><span class="concept-label">CONTRIBUTION MAP / 0${number}</span><svg class="concept-icon" viewBox="0 0 48 48" aria-hidden="true"><use href="#icon-${detail.icon}"/></svg><div class="concept-steps">${detail.steps.map((step,i)=>`<span style="--step:${i}"><b>0${i+1}</b>${step}</span>`).join('')}</div><p>기여 내용을 표현한 개념 애니메이션 · 실제 게임 화면이 아닙니다.</p></div>`;
+  const extras=project.extra.replace(/<video[\s\S]*?<\/video>/,'');
+  openDialog(project.name,`<div class="project-heading"><span class="folder" aria-hidden="true"><i>0${number}</i></span><div><p>PROJECT FILE / 0${number}</p><h2>${project.name}</h2></div></div><div class="facts">${project.facts.split(' / ').map(fact=>`<span>${fact}</span>`).join('')}</div><div class="project-overview">${preview}<div class="project-contribution"><div class="project-section-label">PROJECT OVERVIEW</div><p class="project-summary">${detail.summary}</p><h3>제가 맡은 일</h3><ol>${detail.contributions.map(([heading,text])=>`<li><h4>${heading}</h4><p>${text}</p></li>`).join('')}</ol></div></div><div class="project-evidence">${extras}</div>`,true);
+  document.querySelector('#detail-path').textContent='C:\\OH\\Selected Works\\'+project.name;
+  const video=content.querySelector('#project-loop');
+  if(video && !reducedMotion.matches) {video.muted=true;video.play().catch(()=>{/* Native controls remain available when autoplay is blocked. */});}
+  if(key!=='comstock') {
+    const button=document.createElement('button');button.className='retro-button preview-motion-toggle';button.textContent=reducedMotion.matches?'애니메이션 재생':'애니메이션 일시정지';
+    const preview=content.querySelector('.concept-preview');preview.classList.toggle('motion-paused',reducedMotion.matches);
+    button.addEventListener('click',()=>{const paused=preview.classList.toggle('motion-paused');button.textContent=paused?'애니메이션 재생':'애니메이션 일시정지';});
+    preview.append(button);
+  }
 }
 function openScans(button) {
   const items=JSON.parse(button.dataset.mediaItems);
