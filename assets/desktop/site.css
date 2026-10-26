@@ -83,3 +83,17 @@ html,body{height:100%;overflow:hidden}body{background:#bdc9d7;background-image:r
 @media(max-width:620px){.portfolio-page{display:flex}.portfolio-explorer{height:auto;min-height:0;flex-shrink:0}.portfolio-explorer .explorer-body{padding:20px 15px}.portfolio-explorer .explorer-intro h1{font-size:26px}.portfolio-explorer .project-grid{gap:12px;margin-top:18px;min-height:0}.portfolio-explorer .project-grid button{min-height:150px;padding:18px 6px}.portfolio-explorer .project-grid .folder{width:65px;height:47px}.portfolio-explorer .project-grid .folder-art{width:29px;height:29px;top:6px;left:7px}.portfolio-explorer .project-grid b{font-size:11px}.portfolio-explorer .project-grid small{font-size:9px}.project-dialog .release-metrics-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#detail.project-dialog{width:calc(100vw - 12px);height:calc(100dvh - 18px)}#detail.project-dialog>#detail-content{padding:20px 15px}.project-dialog .project-heading h2{font-size:22px!important;overflow-wrap:anywhere}.project-dialog .project-heading .folder{flex-shrink:0}.concept-steps{gap:6px}.concept-steps>span{font-size:10px;padding:10px 5px}.concept-preview{padding:18px}.project-contribution>h3{margin-top:8px}}
 @media(max-height:800px) and (min-width:621px){.portfolio-page{grid-template-rows:minmax(0,1fr)}.portfolio-explorer .explorer-body{padding:18px 22px}.portfolio-explorer .explorer-intro{padding-bottom:14px}.portfolio-explorer .explorer-intro h1{font-size:25px}.portfolio-explorer .project-grid{margin-top:16px;gap:12px;min-height:230px}.portfolio-explorer .project-grid button{min-height:130px;padding:15px 8px}.portfolio-explorer .project-grid .folder{width:64px;height:43px;margin-bottom:10px}.portfolio-explorer .project-grid .folder-art{width:27px;height:27px;top:6px}.portfolio-explorer .project-grid small{display:block}}
 @media(prefers-reduced-motion:reduce){.concept-icon,.concept-steps>span{animation:none!important}}
+/* The project explorer itself occupies the entire right-hand workspace. */
+@media(min-width:621px){
+  #portfolio{display:grid;grid-template-columns:clamp(230px,22vw,340px) minmax(0,1fr);grid-template-rows:minmax(0,1fr);gap:24px;align-items:stretch;height:100%;min-height:0}
+  #portfolio>.portfolio-note{grid-area:1/1;align-self:start}
+  #portfolio>.portfolio-explorer{grid-area:1/2;align-self:stretch;display:flex;flex-direction:column;width:100%;height:100%;min-height:0;max-height:none}
+  #portfolio>.portfolio-explorer>.titlebar,#portfolio>.portfolio-explorer>.window-menu,#portfolio>.portfolio-explorer>.address,#portfolio>.portfolio-explorer>.status{flex-shrink:0}
+  #portfolio>.portfolio-explorer>.explorer-body{flex:1;min-height:0;overflow-y:auto}
+}
+@media(min-width:621px) and (max-width:1000px){#portfolio{grid-template-columns:210px minmax(0,1fr);gap:16px}}
+/* Project windows scale with the desktop, including wide displays. */
+#detail.project-dialog{width:calc(100vw - 64px);max-width:1760px;height:calc(100dvh - 42px);max-height:none}
+@media(min-width:1101px){.project-dialog .project-overview{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:36px}.project-dialog #project-loop{aspect-ratio:16/10;max-height:55dvh}.project-dialog .project-contribution li p{font-size:14px;line-height:1.9}}
+@media(max-width:800px){#detail.project-dialog{width:calc(100vw - 22px);height:calc(100dvh - 30px)}}
+@media(max-width:620px){#detail.project-dialog{width:calc(100vw - 12px);height:calc(100dvh - 18px)}}
