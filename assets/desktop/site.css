@@ -171,3 +171,10 @@ html,body{height:100%;overflow:hidden}body{background:#bdc9d7;background-image:r
   .desktop-page.document-page{padding:4px 6px}
   .desktop-page.document-page .document-window.maximized{inset:4px 6px!important}
 }
+
+/* Emphasize the personal statement within Info.txt. */
+.welcome-description{font-size:clamp(17px,1.35vw,21px);line-height:1.85;font-weight:450;color:#475568;word-break:keep-all;overflow-wrap:anywhere;margin:22px 0;padding-left:16px;border-left:3px solid #91a6bf}
+.welcome-description strong{font-weight:750;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.welcome-description .personal-color{color:#825638;background:linear-gradient(transparent 63%,#ecddbd 63%)}
+.welcome-description .adaptive-color{color:#354e70;background:linear-gradient(transparent 63%,#dce6f0 63%)}
+@media(max-width:620px),(max-height:800px){.welcome-description{font-size:16px;line-height:1.8;margin:18px 0;padding-left:12px}}
