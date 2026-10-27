@@ -178,3 +178,15 @@ html,body{height:100%;overflow:hidden}body{background:#bdc9d7;background-image:r
 .welcome-description .personal-color{color:#825638;background:linear-gradient(transparent 63%,#ecddbd 63%)}
 .welcome-description .adaptive-color{color:#354e70;background:linear-gradient(transparent 63%,#dce6f0 63%)}
 @media(max-width:620px),(max-height:800px){.welcome-description{font-size:16px;line-height:1.8;margin:18px 0;padding-left:12px}}
+
+/* A personal properties panel, styled as part of the desktop document. */
+.identity-properties{margin-top:26px;padding:13px 15px 15px;border:1px solid #b8c3cf;background:#edf0f2;box-shadow:inset 1px 1px #fff,inset -1px -1px #d4dce3}
+.identity-properties-heading{display:flex;align-items:center;gap:7px;margin-bottom:12px;color:#4a607a}
+.identity-properties-icon{font-size:15px}.identity-properties-heading h2{font:650 13px/1.5 Pretendard,sans-serif;margin:0;white-space:nowrap}.identity-properties-heading>span:last-child{margin-left:auto;font:11px/1.5 Pretendard,sans-serif;color:#67788b}
+.identity-keywords{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;list-style:none;margin:0;padding:0}
+.identity-keywords li{display:flex;align-items:center;justify-content:center;gap:10px;min-width:0;padding:12px 8px;border:1px solid #c7b28e;background:#f2e8d4;color:#775333;box-shadow:inset 1px 1px #fff9eb}
+.identity-keywords li:nth-child(2){border-color:#a7bacd;background:#dfe8f1;color:#365779;box-shadow:inset 1px 1px #f5f9ff}
+.identity-keywords li:nth-child(3){border-color:#adbdac;background:#e2e9de;color:#496348;box-shadow:inset 1px 1px #f5faef}
+.identity-keywords li>span{font:10px/1 monospace;opacity:.8}.identity-keywords strong{font:750 18px/1.3 Pretendard,sans-serif;letter-spacing:.3px}
+@media(max-width:620px),(max-height:800px){.identity-properties{margin-top:18px;padding:11px 12px 12px}.identity-keywords{gap:7px}.identity-keywords li{padding:10px 5px;gap:6px}.identity-keywords strong{font-size:16px}}
+@media(max-width:360px){.identity-properties-heading{flex-wrap:wrap}.identity-properties-heading>span:last-child{flex-basis:100%;margin-left:22px}.identity-keywords li>span{display:none}}
