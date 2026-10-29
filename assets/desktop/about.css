@@ -28,6 +28,14 @@ body.window-dragging{user-select:none;-webkit-user-select:none}
 .welcome-bubble p{font:24px/1.15 'Jersey 10',monospace;letter-spacing:.3px;margin:5px 0}
 .welcome-bubble p>span{color:#9b7453}
 .welcome-message{font-size:11px;color:#718198;line-height:1.5}
+.welcome-step{font-size:inherit;color:#9aa8ba}
+.welcome-next{margin-left:auto;padding:1px 0 1px 8px;font:8px monospace;letter-spacing:.6px;color:#4c698e;cursor:pointer}
+.welcome-next:hover,.welcome-next:focus-visible{color:#354e70;text-decoration:underline}
+/* the assistant rotates tips: a fixed width and two message lines keep the bubble's size steady */
+.about-stage .welcome-bubble{width:320px;max-width:100%}
+.welcome-title,.welcome-message{transition:opacity .2s}
+.welcome-bubble.is-swapping .welcome-title,.welcome-bubble.is-swapping .welcome-message{opacity:0}
+.welcome-message{display:block;min-height:3em}
 @media(max-height:800px) and (min-width:621px){
   .desktop-welcome{gap:12px;padding-bottom:0}
   .welcome-avatar{font-size:29px;width:42px;height:45px}
@@ -108,7 +116,7 @@ body.window-dragging{user-select:none;-webkit-user-select:none}
 @media(max-width:620px){
   .desktop-welcome{gap:11px;padding:2px 0 2px 2px}
   .welcome-avatar{width:35px;height:45px;font-size:28px}
-  .welcome-bubble{padding:9px 11px;min-width:0;flex:1}
+  .about-stage .welcome-bubble{width:auto;padding:9px 11px;min-width:0;flex:1}
   .welcome-bubble p{font-size:22px;letter-spacing:0}
   .welcome-system-label{font-size:7px;letter-spacing:1px}
   .welcome-message{font-size:10px}
@@ -116,4 +124,4 @@ body.window-dragging{user-select:none;-webkit-user-select:none}
 }
 @media(max-width:420px){.w-profile .tool-list{grid-template-columns:1fr}}
 @media(max-width:350px){.welcome-bubble p{font-size:20px}.welcome-message{font-size:9px}.desktop-welcome{gap:8px}.welcome-avatar{width:28px;font-size:25px}}
-@media(prefers-reduced-motion:reduce){.about-stage .window,.about-stage .desktop-welcome{transition:none}}
+@media(prefers-reduced-motion:reduce){.about-stage .window,.about-stage .desktop-welcome,.welcome-title,.welcome-message{transition:none}}

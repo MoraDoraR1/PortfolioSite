@@ -109,6 +109,51 @@
     if (bar && !event.target.closest('button')) bar.querySelector('[data-window="max"]')?.click();
   });
 
+  // ---------- desktop assistant: a greeting, then tips on how to use the site ----------
+  const tips = [
+    { title: 'Welcome to my desktop', smile: true, text: '게임 기획자 오승명의 포트폴리오예요. 폴더마다 제 생각과 작업을 담아 뒀어요.' },
+    { title: 'Open a folder', text: '폴더 아이콘을 누르거나 마우스 휠 · ← → 키 · 스와이프로 다음 폴더로 넘어가요.' },
+    { title: 'Move the windows', wide: '창 제목표시줄을 끌어 옮기고, 클릭한 창은 맨 앞으로 와요. 더블클릭하면 크게 볼 수 있어요.',
+      text: '창 오른쪽 위 □ 버튼을 누르면 창을 크게 볼 수 있어요.' },
+    { title: 'Play the projects', text: 'PORTFOLIO 폴더에서 COMSTOCK을 열면 플레이 영상과 itch.io 출시 지표를 볼 수 있어요.' },
+    { title: 'Read my notes', text: 'ESSAY에는 자기소개서를, GAME LOG에는 플레이하며 찾은 기획의 단서를 담았어요.' },
+  ];
+  const bubbleBox = bubble && bubble.querySelector('.welcome-bubble');
+  if (bubbleBox) {
+    const title = bubbleBox.querySelector('.welcome-title');
+    const message = bubbleBox.querySelector('.welcome-message');
+    const step = bubbleBox.querySelector('.welcome-step');
+    const next = bubbleBox.querySelector('.welcome-next');
+    const still = matchMedia('(prefers-reduced-motion: reduce)');
+    let tip = 0, timer = 0, paused = false;
+    const render = () => {
+      const t = tips[tip];
+      title.textContent = t.title;
+      if (t.smile) title.insertAdjacentHTML('beforeend', '<span aria-hidden="true"> :)</span>');
+      message.textContent = desktop.matches && t.wide ? t.wide : t.text;
+      step.textContent = `· ${tip + 1}/${tips.length}`;
+    };
+    const show = index => {
+      tip = (index + tips.length) % tips.length;
+      if (still.matches) { render(); return; }
+      bubbleBox.classList.add('is-swapping');
+      setTimeout(() => { render(); bubbleBox.classList.remove('is-swapping'); }, 200);
+    };
+    const schedule = () => {
+      clearInterval(timer);
+      if (!still.matches) timer = setInterval(() => { if (!paused && !document.hidden) show(tip + 1); }, 7000);
+    };
+    step.hidden = next.hidden = false;
+    render();
+    schedule();
+    next.addEventListener('click', () => { show(tip + 1); schedule(); });
+    bubble.addEventListener('pointerenter', () => { paused = true; });
+    bubble.addEventListener('pointerleave', () => { paused = false; });
+    bubble.addEventListener('focusin', () => { paused = true; });
+    bubble.addEventListener('focusout', () => { paused = false; });
+    desktop.addEventListener('change', render);
+  }
+
   let resizeTimer;
   const relayout = () => { if (!customized) applyLayout(false); };
   window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(relayout, 120); });
