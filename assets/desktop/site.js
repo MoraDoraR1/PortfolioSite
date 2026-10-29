@@ -12,7 +12,7 @@ const workspace = document.querySelector('#workspace');
 const modal = document.querySelector('#detail');
 const content = document.querySelector('#detail-content');
 const navLinks = [...document.querySelectorAll('.desktop-folders a')];
-const labels = ['INTRO','PORTFOLIO','PROFILE','ESSAY','GAME LOG'];
+const labels = ['ABOUT','PORTFOLIO','ESSAY','GAME LOG'];
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 let current = 0, wheelAmount = 0, lastWheel = 0, lockedUntil = 0;
 const tasks = document.querySelector('#task-buttons');
@@ -36,6 +36,8 @@ function go(index, focus = false, historyMode = 'push') {
     page.classList.toggle('is-current', i === index);
   });
   track.style.transform = `translateX(-${index * 100}%)`;
+  // A typed #hash makes the browser scroll the workspace to that page on top of the transform.
+  workspace.scrollLeft = 0;
   navLinks.forEach((link,i) => {
     link.classList.toggle('active',i === index);
     if(i === index) link.setAttribute('aria-current','page');
@@ -130,7 +132,7 @@ document.addEventListener('keydown',event => {
 });
 let touch;
 workspace.addEventListener('touchstart',event => {
-  if(event.touches.length!==1 || event.target.closest('video,button,a')) {touch=null;return;}
+  if(event.touches.length!==1 || event.target.closest('video,button,a,.about-stage .titlebar')) {touch=null;return;}
   touch={x:event.touches[0].clientX,y:event.touches[0].clientY};
 },{passive:true});
 workspace.addEventListener('touchend',event => {
