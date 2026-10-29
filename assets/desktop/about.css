@@ -1,4 +1,4 @@
-/* ABOUT: Info, Profile and Tools as overlapping windows. Click a window to bring it forward,
+/* ABOUT: the desktop assistant's speech bubble plus the Info and Profile windows. Click a window to bring it forward,
    drag its titlebar to move it. Each window takes its content's height, so nothing is cut off;
    about.js measures them and places them for the current desktop size. */
 .about-stage{position:relative;height:100%;min-height:0}
@@ -12,10 +12,31 @@
 .about-stage .window.is-dragging{transition:box-shadow .2s}
 .about-stage .window.is-dragging .titlebar{cursor:grabbing}
 body.window-dragging{user-select:none;-webkit-user-select:none}
-/* Info on the left; Tools and Profile share the right-hand column, a small gap apart from Info.
+/* Bubble and Info share the left column, Profile (with the tool list at its foot) sits on the right.
    Widths are capped so the pair stays compact (and centred by about.js) on wide screens. */
-.about-stage .w-info{--w:min(39%,600px)}
-.about-stage .w-tools,.about-stage .w-profile{--w:min(59%,880px)}
+.about-stage .w-info{--w:min(35%,540px)}
+.about-stage .w-profile{--w:min(63%,900px)}
+.about-stage .desktop-welcome{position:absolute;margin:0;left:var(--x,0%);top:var(--y,0%);max-width:min(35%,540px);transition:left .4s cubic-bezier(.22,.7,.2,1),top .4s cubic-bezier(.22,.7,.2,1)}
+
+/* Desktop assistant speech bubble */
+.desktop-welcome{display:flex;align-items:center;gap:15px;padding:0 0 4px 4px}
+.welcome-avatar{display:grid;place-items:center;width:52px;height:57px;flex-shrink:0;font-size:36px;line-height:1;transform:rotate(-9deg);filter:drop-shadow(2px 3px 0 #354e7018)}
+.welcome-bubble{position:relative;padding:10px 17px 11px;background:#f4f3e9;border:1px solid #8799b0;box-shadow:inset 1px 1px #fff,3px 3px #354e701a;color:#354e70}
+.welcome-bubble:before{content:'';position:absolute;width:10px;height:10px;left:-6px;top:33px;background:#f4f3e9;border-left:1px solid #8799b0;border-bottom:1px solid #8799b0;transform:rotate(45deg)}
+.welcome-system-label{display:flex;align-items:center;gap:6px;font:8px monospace;letter-spacing:1.3px;color:#7a8ca4}
+.welcome-system-label i{display:block;width:5px;height:5px;background:#809b80;box-shadow:1px 1px #fff}
+.welcome-bubble p{font:24px/1.15 'Jersey 10',monospace;letter-spacing:.3px;margin:5px 0}
+.welcome-bubble p>span{color:#9b7453}
+.welcome-message{font-size:11px;color:#718198;line-height:1.5}
+@media(max-height:800px) and (min-width:621px){
+  .desktop-welcome{gap:12px;padding-bottom:0}
+  .welcome-avatar{font-size:29px;width:42px;height:45px}
+  .welcome-bubble{padding:7px 13px 8px}
+  .welcome-system-label{font-size:7px}
+  .welcome-bubble p{font-size:21px;margin:3px 0}
+  .welcome-message{font-size:10px}
+  .welcome-bubble:before{top:25px}
+}
 
 /* Info */
 .w-info .welcome-copy{padding:0;background:transparent}
@@ -43,31 +64,56 @@ body.window-dragging{user-select:none;-webkit-user-select:none}
 .w-profile .profile-fact{padding:9px 12px}
 .w-profile .profile-fact-head{display:none}
 .w-profile .profile-fact h4{margin:0 0 3px;font-size:13px}
-.w-profile .profile-fact-list li{margin:5px 0}
-.w-profile .profile-fact-list span{margin-top:2px}
-/* Tools: one row per category, "tool: what I use it for" */
-.w-tools .tools-panel{border:0;margin:0;padding:0}
-.w-tools .tools-title{display:none}
-.w-tools .tool-categories{display:grid;grid-template-columns:1fr;gap:0}
-.w-tools .tool-category{display:grid;grid-template-columns:104px minmax(0,1fr);gap:10px;align-items:start;padding:9px 0;border:0;border-top:1px dashed #c9d3e0;background:transparent;min-width:0}
-.w-tools .tool-category:first-child{border-top:0;padding-top:0}
-.w-tools .tool-category h4{margin:4px 0 0}
-.w-tools .tool-chips{display:grid;gap:4px}
-.w-tools .tool-chip{flex-wrap:nowrap;align-items:flex-start;gap:8px;padding:2px 0}
-.w-tools .tool-chip>span:first-of-type{font-weight:650;white-space:nowrap;min-width:74px}
-.w-tools .tool-tooltip{width:auto;flex:1 1 auto;min-width:0;font-size:11.5px;line-height:1.55}
-.w-tools .tool-icon{width:18px!important;height:18px}
-.w-tools .tool-legal{margin:10px 0 0}
+.w-profile .profile-fact-list li{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:0 10px;margin:4px 0}
+.w-profile .profile-fact-list span{margin:0}
+/* Tools at the foot of Profile: one card per tool, three across.
+   #about outranks the shared :is(#detail-content,.section-content) p rule. */
+#about .w-profile .tools-panel{margin-top:14px;padding-top:12px;border-top:1px dashed #c9d3e0}
+#about .w-profile .tools-title{margin:0 0 8px;font-size:13px;font-weight:700;line-height:1.5;color:#2f3d52}
+#about .w-profile .tool-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:0;padding:0;list-style:none}
+#about .w-profile .tool-item{display:flex;align-items:flex-start;gap:9px;padding:7px 10px;border:1px solid #c8d1df;background:#edf1f6;min-width:0}
+#about .w-profile .tool-icon{width:18px!important;height:18px;flex:0 0 18px;margin:1px 0 0!important}
+#about .w-profile .tool-item>div{min-width:0}
+#about .w-profile .tool-name{display:flex;align-items:baseline;flex-wrap:wrap;gap:0 7px;margin:0;font-size:12.5px;line-height:1.4}
+#about .w-profile .tool-name b{font-weight:700;color:#2f3d52}
+#about .w-profile .tool-name small{font:9px monospace;letter-spacing:.8px;color:#768da9}
+#about .w-profile .tool-use{margin:2px 0 0;font-size:11px;line-height:1.5;color:#647184;word-break:keep-all}
+#about .w-profile .tool-legal{margin:7px 0 0;line-height:1.5}
 
-/* Narrow screens: the windows simply stack, Info first */
-@media(max-width:820px){
+/* Short or narrow desktops: tighter spacing so Profile still fits without scrolling */
+@media(min-width:1101px) and (max-height:760px),(min-width:1101px) and (max-width:1200px){
+  #about .about-stage .document-window>.section-content{padding:14px 22px}
+  .w-profile .profile-photo{width:56px;flex-basis:56px}
+  .w-profile .profile-photo img{width:56px;height:56px!important}
+  .w-profile .meta-list{margin-top:6px}
+  .w-profile .meta-list li{padding:5px 0}
+  .w-profile .profile-fact{padding:7px 11px}
+  #about .w-profile .tools-panel{margin-top:10px;padding-top:9px}
+  #about .w-profile .tool-item{padding:5px 9px}
+  #about .w-profile .tool-legal{margin-top:5px}
+}
+
+/* Narrow screens: the bubble and windows simply stack, Info first */
+@media(max-width:1100px){
   .about-page{overflow-y:auto}
   .about-stage{height:auto;display:flex;flex-direction:column;gap:14px}
-  .about-stage .window{position:static;width:auto;max-height:none;transition:none}
+  .about-stage .window,.about-stage .desktop-welcome{position:static;width:auto;max-width:none;max-height:none;transition:none}
   #about .about-stage .document-window>.section-content{overflow:visible}
   .about-stage .titlebar{cursor:default}
-  .w-info{order:1}.w-profile{order:2}.w-tools{order:3}
+  .w-info{order:1}.w-profile{order:2}
+  .w-info .status{display:none}
   .w-profile .profile-grid{grid-template-columns:1fr!important}
-  .w-profile .status{display:none}
+  .w-profile .tool-list{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
-@media(prefers-reduced-motion:reduce){.about-stage .window{transition:none}}
+@media(max-width:620px){
+  .desktop-welcome{gap:11px;padding:2px 0 2px 2px}
+  .welcome-avatar{width:35px;height:45px;font-size:28px}
+  .welcome-bubble{padding:9px 11px;min-width:0;flex:1}
+  .welcome-bubble p{font-size:22px;letter-spacing:0}
+  .welcome-system-label{font-size:7px;letter-spacing:1px}
+  .welcome-message{font-size:10px}
+  .welcome-bubble:before{top:28px}
+}
+@media(max-width:420px){.w-profile .tool-list{grid-template-columns:1fr}}
+@media(max-width:350px){.welcome-bubble p{font-size:20px}.welcome-message{font-size:9px}.desktop-welcome{gap:8px}.welcome-avatar{width:28px;font-size:25px}}
+@media(prefers-reduced-motion:reduce){.about-stage .window,.about-stage .desktop-welcome{transition:none}}

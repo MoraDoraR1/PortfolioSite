@@ -5,25 +5,30 @@
   if (!stage) return;
   const windows = [...stage.querySelectorAll('.window')];
   const win = cls => stage.querySelector('.' + cls);
-  const desktop = matchMedia('(min-width: 821px)');
+  const desktop = matchMedia('(min-width: 1101px)') // matches the stacking breakpoint in about.css;
   const fit = (v, max) => Math.max(0, Math.min(v, max));
 
-  // Info in front on the left; Tools and Profile share the right-hand column, Profile in front at the
-  // bottom so Tools peeks out above it. The group is centred with at most a 32px gap between Info and
-  // the column. Returns the back-to-front order and each window's top-left corner in px.
+  // The speech bubble and Info share the left column, centred together; Profile fills the right.
+  // A gap of at most 32px separates the columns, and the whole group is centred on wide desktops.
+  // Returns the back-to-front order of the windows and each item's top-left corner in px.
+  const GAP = 32, BUBBLE_GAP = 16;
   const layout = (S, s) => {
-    const col = Math.max(s['w-tools'].w, s['w-profile'].w);
-    const gap = fit(S.w - s['w-info'].w - col, 32);
-    const x0 = Math.max(0, (S.w - s['w-info'].w - gap - col) / 2), cx = x0 + s['w-info'].w + gap;
+    const left = Math.max(s['w-info'].w, s.bubble.w);
+    const gap = fit(S.w - left - s['w-profile'].w, GAP);
+    const x0 = Math.max(0, (S.w - left - gap - s['w-profile'].w) / 2);
+    const colH = s.bubble.h + BUBBLE_GAP + s['w-info'].h;
+    const y0 = Math.max(0, (S.h - colH) / 2);
     return {
-      order: ['w-tools', 'w-profile', 'w-info'],
+      order: ['w-profile', 'w-info'],
       pos: {
-        'w-tools': [cx, 0],
-        'w-profile': [cx, S.h - s['w-profile'].h],
-        'w-info': [x0, (S.h - s['w-info'].h) / 2],
+        bubble: [x0, y0],
+        'w-info': [x0, Math.min(y0 + s.bubble.h + BUBBLE_GAP, S.h - s['w-info'].h)],
+        'w-profile': [x0 + left + gap, (S.h - s['w-profile'].h) / 2],
       },
     };
   };
+  const bubble = stage.querySelector('.desktop-welcome');
+  const item = key => key === 'bubble' ? bubble : win(key);
 
   let z = 0;
   function raise(w) {
@@ -40,16 +45,18 @@
       s[[...w.classList].find(c => c.startsWith('w-'))] = { w: w.offsetWidth, h: w.offsetHeight };
       w.style.maxHeight = '';
     });
+    s.bubble = bubble ? { w: bubble.offsetWidth, h: bubble.offsetHeight } : { w: 0, h: 0 };
     return s;
   }
   function applyLayout(restack) {
     if (!desktop.matches || !stage.clientWidth) return;
     const S = { w: stage.clientWidth, h: stage.clientHeight };
     const { order, pos } = layout(S, measure());
-    order.forEach(c => {
-      const [x, y] = pos[c];
-      win(c).style.setProperty('--x', (fit(x, S.w) / S.w * 100).toFixed(3) + '%');
-      win(c).style.setProperty('--y', (fit(y, S.h) / S.h * 100).toFixed(3) + '%');
+    Object.entries(pos).forEach(([key, [x, y]]) => {
+      const el = item(key);
+      if (!el) return;
+      el.style.setProperty('--x', (fit(x, S.w) / S.w * 100).toFixed(3) + '%');
+      el.style.setProperty('--y', (fit(y, S.h) / S.h * 100).toFixed(3) + '%');
     });
     if (restack) { z = 0; order.forEach(c => raise(win(c))); }
   }
