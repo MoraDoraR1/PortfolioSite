@@ -12,7 +12,7 @@ const workspace = document.querySelector('#workspace');
 const modal = document.querySelector('#detail');
 const content = document.querySelector('#detail-content');
 const navLinks = [...document.querySelectorAll('.desktop-folders a')];
-const labels = ['INTRO','PORTFOLIO','PROFILE','RESUME','ESSAY','GAME LOG'];
+const labels = ['INTRO','PORTFOLIO','PROFILE','ESSAY','GAME LOG'];
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 let current = 0, wheelAmount = 0, lastWheel = 0, lockedUntil = 0;
 const tasks = document.querySelector('#task-buttons');
@@ -45,7 +45,7 @@ function go(index, focus = false, historyMode = 'push') {
     button.classList.toggle('active',i === index);
     button.setAttribute('aria-pressed',String(i === index));
   });
-  document.querySelector('#page-counter').textContent = `${String(index+1).padStart(2,'0')} / 06`;
+  document.querySelector('#page-counter').textContent = `${String(index+1).padStart(2,'0')} / ${String(pages.length).padStart(2,'0')}`;
   document.querySelector('#current-folder-name').textContent = labels[index].replace(' ', '_');
   document.querySelector('.taskbar-location').setAttribute('aria-label', '현재 폴더: ' + labels[index]);
   document.querySelector('#previous-page').title = index > 0 ? labels[index-1] + ' 폴더 열기' : '첫 번째 폴더입니다';
