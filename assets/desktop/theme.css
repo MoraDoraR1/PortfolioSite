@@ -2,39 +2,23 @@
 body{background:var(--v-bg);color:#303944}
 :root{--violet:var(--v-accent);--paper:#faf8f1}
 .desktop{min-height:1080px;height:auto;max-width:1440px;background-image:radial-gradient(#fff3 .6px,transparent .6px);background-size:4px 4px}
-.menubar{background:#f2f0e9;border-color:#7b8187}.edition{color:#59616b;letter-spacing:1px}
 .window,dialog,.taskbar{background:var(--v-chrome);border-color:#7f858a}
 .window,.window.is-active{box-shadow:inset 1px 1px #fff,inset -1px -1px #90969b,4px 5px #26313c22,10px 14px 30px #26313c0d}
 .titlebar{background:var(--v-inactive)}.window.is-active>.titlebar,dialog>.titlebar,#start-menu strong{background:var(--v-accent)}
 .titlebar button{color:#303944;background:var(--v-chrome);border-color:#4e5964}
-.window-menu,.menu-hint,.status,.player-footer small,.project-grid small,.note-body>p,.explorer-intro p{color:#606773}
-.address div,.note-body,.explorer-body{background-color:#faf8f1}.address,.address div,.window-menu button,.status span{border-color:#b5bac0}
-.explorer-intro{border-color:#dbdce0}.explorer-intro>span,.eyebrow,.role,.keywords{color:var(--v-accent)}
+.window-menu,.menu-hint,.status,.project-grid small,.explorer-intro p{color:#606773}
+.address div,.explorer-body{background-color:#faf8f1}.address,.address div,.window-menu button,.status span{border-color:#b5bac0}
+.explorer-intro{border-color:#dbdce0}.explorer-intro>span,.role{color:var(--v-accent)}
 .directory-stamp{color:#777f8a!important}.directory-stamp b{color:#8b929a}
 .project-grid button:hover{background:#e7e8eb;border-color:#8993a0}.project-grid button:hover b{background:var(--v-accent)}
 .orange{background:#d9ba8f}.pink{background:#d5b1aa}.green{background:#b5c4b4}.blue{background:#aabdd2}
 .folder-art,.folder i{color:#59564e}.folder,.folder:before{border-color:#625e55}
-.note-body{background-image:linear-gradient(90deg,transparent 23px,#e6e3dc 23px,#e6e3dc 24px,transparent 24px)}
-.profile-head img{outline-color:#c6c9ca}.keywords{border-color:#c8cbd0}
-.sticky{background:var(--v-note);box-shadow:2px 4px #343a421c,6px 14px 20px #343a4210;color:#514d42}
-.sticky em{background:linear-gradient(transparent 55%,#bda96b44 55%)}
-.desktop-icon{stroke:#48515e;filter:drop-shadow(2px 3px #30394422)}
-.log-shortcut:hover{background:#f9f8f333;border-color:#8b929c}.desktop-caption{color:#5b6570}.wallpaper-type{color:#46596b1c}
 .retro-button{background:#f0eee5;color:#384656;border-color:#88939d}.taskbar{box-shadow:0 -2px #a3aab1}
 .taskbar>button{border-color:#a7adb4}.taskbar>button.is-active{background:#f6f4ec;box-shadow:inset 1px 1px #8d98a3,inset -1px -1px white}.taskbar>button.is-minimized{color:#747c86}.tray{background:#e8e8e3;border-color:#a7adb4}
 #start-menu{background:var(--v-chrome)}#start-menu button:hover{background:#cfd5dd}
 button:focus-visible,a:focus-visible{outline-color:var(--v-accent)}
 dialog::backdrop{background:#27334466}.detail-path,:is(#detail-content,.section-content) p{color:#606a76}:is(#detail-content,.section-content){background:#faf8f1}:is(#detail-content,.section-content) a{color:var(--v-accent)}
 :is(#detail-content,.section-content) .facts span,:is(#detail-content,.section-content) .resume-details div,:is(#detail-content,.section-content) .game-card,:is(#detail-content,.section-content) .detail-links a{background:#eceef0;border-color:#c8cdd3}
-.player video{border-color:#9ca3ac}.player-footer a:hover{background:#faf4dd}
-@media(min-width:1151px){
- .variant-01 .explorer{left:140px;top:45px;width:720px}.variant-01 .about{left:900px;right:auto;top:45px;width:390px}.variant-01 .player{left:140px;top:575px;width:720px}.variant-01 .player video{height:280px}.variant-01 .sticky{left:940px;right:auto;top:625px;width:230px}.variant-01 .log-shortcut{left:910px;right:auto;top:890px}
- .variant-02 .about{left:140px;right:auto;top:45px;width:350px}.variant-02 .explorer{left:530px;top:45px;width:760px}.variant-02 .player{left:530px;top:575px;width:760px}.variant-02 .player video{height:280px}.variant-02 .sticky{left:175px;right:auto;top:625px;width:240px}.variant-02 .log-shortcut{left:150px;right:auto;top:900px;width:340px}
- .variant-03 .player{left:140px;top:45px;width:690px}.variant-03 .player video{height:320px}.variant-03 .explorer{left:140px;top:535px;width:690px}.variant-03 .about{left:870px;right:auto;top:45px;width:420px}.variant-03 .sticky{left:950px;right:auto;top:625px;width:230px}.variant-03 .log-shortcut{left:890px;right:auto;top:900px}
- .variant-04 .explorer{left:140px;top:45px;width:1150px}.variant-04 .about{left:315px;right:auto;top:575px;width:385px}.variant-04 .player{left:735px;top:575px;width:555px}.variant-04 .player video{height:290px}.variant-04 .sticky{left:140px;right:auto;top:625px;width:140px;padding:20px 12px}.variant-04 .sticky p{font-size:16px}.variant-04 .sticky>span:not(.tape){font-size:6px}.variant-04 .sticky>div{font-size:7px}.variant-04 .log-shortcut{left:140px;right:auto;top:870px;width:150px;flex-direction:column;align-items:start}.variant-04 .log-shortcut small{line-height:1.5}
- .variant-05 .explorer{left:140px;top:45px;width:670px}.variant-05 .player{left:850px;top:45px;width:440px}.variant-05 .player video{height:245px}.variant-05 .about{left:850px;right:auto;top:480px;width:440px}.variant-05 .sticky{left:190px;right:auto;top:670px;width:250px}.variant-05 .log-shortcut{left:490px;right:auto;top:745px;width:280px;flex-direction:column;align-items:start}.variant-05 .log-shortcut img{width:150px;height:100px}
- .sticky{transform:rotate(3deg)}.sticky p{font-size:20px}.sticky>span:not(.tape){font-size:8px}.sticky>div{font-size:10px}.wallpaper-type{bottom:70px;right:80px;font-size:44px}.desktop-caption{left:140px;bottom:28px}
-}
 @media(min-width:1151px) and (max-width:1350px){.desktop{zoom:.85;min-height:1080px;width:1440px;max-width:none;margin:auto}}
-@media(max-width:1150px){.desktop{min-height:1250px}.sticky{width:230px}.variant-03 .player{top:510px}.variant-05 .player{top:510px}}
-@media(max-width:720px){.desktop{min-height:0}.sticky{width:90%}.variant-03 .player,.variant-05 .player{top:auto}.variant-02 .about{order:1}.variant-02 .explorer{order:2}.variant-02 .player{order:3}.variant-03 .player{order:1}.variant-03 .explorer{order:2}.variant-03 .about{order:3}.variant-05 .player{order:2}.variant-05 .about{order:3}}
+@media(max-width:1150px){.desktop{min-height:1250px}}
+@media(max-width:720px){.desktop{min-height:0}}
