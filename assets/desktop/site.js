@@ -276,3 +276,23 @@ try {
     select(tabs[(to + tabs.length) % tabs.length], true);
   });
 })();
+// ESSAY: the contents list marks the part being read
+(() => {
+  const root = document.querySelector('#essay .section-content');
+  const links = [...document.querySelectorAll('.essay-toc a[data-toc]')];
+  if (!root || !links.length) return;
+  const mark = id => links.forEach(a => a.classList.toggle('is-here', a.dataset.toc === id));
+  const io = new IntersectionObserver(es => {
+    const seen = es.filter(e => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+    if (seen) mark(seen.target.id);
+  }, { root, rootMargin: '0px 0px -60% 0px' });
+  document.querySelectorAll('.es-sec').forEach(s => io.observe(s));
+  // keep the in-page jumps inside the document window
+  document.querySelectorAll('#essay a[href^="#es-"]').forEach(a => a.addEventListener('click', e => {
+    const t = document.getElementById(a.getAttribute('href').slice(1));
+    if (!t) return;
+    e.preventDefault();
+    root.scrollTo({ top: root.scrollTop + t.getBoundingClientRect().top - root.getBoundingClientRect().top - 8, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    mark(t.id);
+  }));
+})();

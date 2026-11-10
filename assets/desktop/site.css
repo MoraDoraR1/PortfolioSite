@@ -406,3 +406,33 @@ dialog{max-height:88dvh}
 #workspace #portfolio .portfolio-explorer .explorer-intro h1 br{display:none}
 #workspace #portfolio .portfolio-explorer .explorer-intro p{display:block;margin:0;font-size:13px;line-height:1.5}
 #workspace #portfolio .pf{margin-top:14px}
+/* Info: each highlight wears the colour of the keyword it stands for (나다움, 협력, 유연함) */
+.welcome-description .team-color{color:#496348;background:linear-gradient(transparent 63%,#d9e4d3 63%)}
+.welcome-description .name-mark{color:#26313c;font-weight:800}
+
+.welcome-description .nw{white-space:nowrap}
+/* ESSAY: the cover letter in full. A map of its three chapters, a contents list that follows the reader, and body text sized to be read */
+#workspace .essay-doc{display:block}
+.em-no{display:inline-grid;place-items:center;width:40px;height:40px;background:#354e70;color:#fff;font:26px/1 'Jersey 10',monospace}
+.essay-read{display:grid;grid-template-columns:240px minmax(0,1fr);gap:56px;align-items:start;margin-top:12px}
+.essay-toc{position:sticky;top:0;padding:16px 0}
+#workspace .et-title{margin:0 0 12px;font-weight:800;font-size:14px;color:#1f2d40}
+.essay-toc ol,.essay-toc ul{list-style:none;margin:0;padding:0}
+.essay-toc>ol>li{margin-bottom:14px}
+.et-ch{display:block;font-weight:700;font-size:13.5px;color:#46536a;margin-bottom:4px}
+.essay-toc a{display:block;padding:5px 0 5px 12px;border-left:2px solid #d6dde7;font-size:14px;line-height:1.45;color:#46536a;text-decoration:none;word-break:keep-all}
+.essay-toc a:hover{color:#1f2d40;border-left-color:#8fa0b8}
+.essay-toc a.is-here{color:#1f2d40;font-weight:700;border-left-color:#354e70;background:linear-gradient(90deg,#e3e9f1,transparent)}
+.essay-text{max-width:760px}
+.es-ch{padding-bottom:12px}
+.es-ch+.es-ch{margin-top:40px;padding-top:40px;border-top:2px solid #c9d3e0}
+.es-ch-head{display:flex;gap:16px;align-items:flex-start;margin-bottom:8px}
+#workspace .es-ch-head .story-title{margin:2px 0 0;font-size:26px;line-height:1.3;letter-spacing:-.5px;color:#1f2d40}
+#workspace .es-ch-sub{margin:6px 0 0;font-size:16px;color:#46536a}
+.es-sec{padding-top:28px;scroll-margin-top:12px}
+#workspace .es-q{margin:0 0 14px;padding-left:14px;border-left:4px solid #b5643a;font:800 21px/1.45 Pretendard,sans-serif;letter-spacing:-.3px;color:#1f2d40}
+#workspace .es-sec p{margin:0 0 16px;font-size:17px!important;line-height:1.9;color:#26313c!important;word-break:keep-all}
+#workspace .essay-doc .essay-answer{margin-top:32px}
+@media(max-width:1200px){.essay-read{grid-template-columns:1fr;gap:24px}.essay-toc{position:static}}
+@media(max-width:620px){#workspace .es-sec p{font-size:16px!important}#workspace .es-q{font-size:19px}#workspace .es-ch-head .story-title{font-size:22px}}
+.essay-text{background:#fff;border:1px solid #d6dde7;padding:36px 44px 28px;max-width:860px}@media(max-width:620px){.essay-text{padding:22px 18px 16px}}
