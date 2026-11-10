@@ -1,0 +1,45 @@
+/* Readability: sentences people actually read get at least 13px and ~7:1 contrast;
+   small labels get 10–11px and ~6:1. Same blue-grey family as the rest of the site, one step darker.
+   #workspace / #about prefixes outrank the shared :is(#detail-content,.section-content) rules. */
+:root{--read-ink:#46536a;--label-ink:#4b586b}
+
+/* Korean wraps between words, not inside them (long URLs and e-mails may still break) */
+#workspace :is(p,dd,dt,li,small,h1,h2,h3,h4,figcaption,.file-summary,.tool-use,.welcome-message){word-break:keep-all;overflow-wrap:anywhere}
+
+/* GAME LOG */
+#workspace .analysis-details dd{font-size:13.5px;line-height:1.75;color:var(--read-ink)}
+#workspace .analysis-details dt{font-size:12.5px}
+#workspace .game-card p{font-size:13px;color:var(--read-ink)}
+#workspace .game-card .tag,#workspace .field-list span{font-size:11px}
+#workspace .game-card .tag{color:var(--label-ink)}
+#workspace .other-meta h4{font-size:13px}
+#workspace .other-time{font-size:11px;color:var(--label-ink)}
+
+/* PORTFOLIO */
+#workspace .project-grid button small{font-size:13px;color:var(--read-ink)}
+#workspace .project-grid .file-summary{font-size:12px;color:var(--read-ink)}
+#workspace .file-note span{font-size:13px;color:var(--read-ink)}
+
+/* ESSAY */
+#workspace .story-block b{font-size:11px;color:var(--label-ink)}
+#workspace .story-block p{color:var(--read-ink)}
+
+/* ABOUT */
+#about .w-profile .meta-list li{font-size:13px}
+#about .w-profile .meta-list li>span{font-size:11px;color:var(--label-ink)}
+#about .w-profile .profile-fact-list li{font-size:13px}
+#about .w-profile .profile-fact-list span{color:var(--label-ink)}
+#about .w-profile .tool-use{font-size:12px;color:var(--read-ink)}
+#about .w-profile .tool-name small{font-size:10px;color:var(--label-ink)}
+#about .w-profile .tool-legal{font-size:11px!important;color:var(--label-ink)!important}
+#about .welcome-message{font-size:12px;color:var(--read-ink)}
+.about-stage .welcome-bubble{width:340px}
+
+/* window chrome: path bars and status bars */
+#workspace .document-path{font-size:11px;color:var(--label-ink)}
+#workspace .document-window>.status span{font-size:11px;color:var(--label-ink)}
+@media(max-width:620px){
+  #workspace .document-path{font-size:10px}
+  #workspace .document-window>.status span{font-size:10px}
+  #about .welcome-message{font-size:11.5px}
+}

@@ -21,11 +21,13 @@ body.window-dragging{user-select:none;-webkit-user-select:none}
 /* Desktop assistant speech bubble */
 .desktop-welcome{display:flex;align-items:center;gap:15px;padding:0 0 4px 4px}
 .welcome-avatar{display:grid;place-items:center;width:52px;height:57px;flex-shrink:0;font-size:36px;line-height:1;transform:rotate(-9deg);filter:drop-shadow(2px 3px 0 #354e7018)}
+.welcome-avatar svg{display:block;width:100%;height:auto}
 .welcome-bubble{position:relative;padding:10px 17px 11px;background:#f4f3e9;border:1px solid #8799b0;box-shadow:inset 1px 1px #fff,3px 3px #354e701a;color:#354e70}
 .welcome-bubble:before{content:'';position:absolute;width:10px;height:10px;left:-6px;top:33px;background:#f4f3e9;border-left:1px solid #8799b0;border-bottom:1px solid #8799b0;transform:rotate(45deg)}
 .welcome-system-label{display:flex;align-items:center;gap:6px;font:8px monospace;letter-spacing:1.3px;color:#5c6f87}
 .welcome-system-label i{display:block;width:5px;height:5px;background:#809b80;box-shadow:1px 1px #fff}
 .welcome-bubble p{font:24px/1.15 'Jersey 10',monospace;letter-spacing:.3px;margin:5px 0}
+.welcome-title{min-height:1.15em}
 .welcome-bubble p>span{color:#9b7453}
 .welcome-message{font-size:11px;color:#5f6e83;line-height:1.5}
 .welcome-step{font-size:inherit;color:#9aa8ba}
@@ -88,8 +90,8 @@ body.window-dragging{user-select:none;-webkit-user-select:none}
 #about .w-profile .tool-use{margin:2px 0 0;font-size:11px;line-height:1.5;color:#616d80;word-break:keep-all}
 #about .w-profile .tool-legal{margin:7px 0 0;line-height:1.5}
 
-/* Short or narrow desktops: tighter spacing so Profile still fits without scrolling */
-@media(min-width:1101px) and (max-height:760px),(min-width:1101px) and (max-width:1200px){
+/* Short desktops: tighter spacing so Profile still fits without scrolling */
+@media(min-width:1201px) and (max-height:760px){
   #about .about-stage .document-window>.section-content{padding:14px 22px}
   .w-profile .profile-photo{width:56px;flex-basis:56px}
   .w-profile .profile-photo img{width:56px;height:56px!important}
@@ -102,7 +104,7 @@ body.window-dragging{user-select:none;-webkit-user-select:none}
 }
 
 /* Narrow screens: the bubble and windows simply stack, Info first */
-@media(max-width:1100px){
+@media(max-width:1200px){
   .about-page{overflow-y:auto}
   .about-stage{height:auto;display:flex;flex-direction:column;gap:14px}
   .about-stage .window,.about-stage .desktop-welcome{position:static;width:auto;max-width:none;max-height:none;transition:none}
@@ -124,4 +126,12 @@ body.window-dragging{user-select:none;-webkit-user-select:none}
 }
 @media(max-width:420px){.w-profile .tool-list{grid-template-columns:1fr}}
 @media(max-width:350px){.welcome-bubble p{font-size:20px}.welcome-message{font-size:9px}.desktop-welcome{gap:8px}.welcome-avatar{width:28px;font-size:25px}}
-@media(prefers-reduced-motion:reduce){.about-stage .window,.about-stage .desktop-welcome,.welcome-title,.welcome-message{transition:none}}
+/* boot: the first time ABOUT opens, Profile then Info open in turn and the assistant types its greeting */
+@keyframes boot-open{from{opacity:0;translate:0 16px;scale:.975}to{opacity:1;translate:0;scale:1}}
+@keyframes assist-pop{from{opacity:0;transform:translateY(8px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes caret{50%{opacity:0}}
+#about.is-current .about-stage.is-booting .w-profile{animation:boot-open .42s .1s backwards}
+#about.is-current .about-stage.is-booting .w-info{animation:boot-open .42s .3s backwards}
+#about.is-current .about-stage.is-booting .desktop-welcome{animation:assist-pop .45s .62s backwards}
+.welcome-title.is-typing:after{content:'_';animation:caret .7s steps(1) infinite}
+@media(prefers-reduced-motion:reduce){.about-stage .window,.about-stage .desktop-welcome,.welcome-title,.welcome-message{transition:none}#about.is-current .about-stage.is-booting .window,#about.is-current .about-stage.is-booting .desktop-welcome{animation:none}}
