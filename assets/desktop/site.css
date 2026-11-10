@@ -400,3 +400,9 @@ dialog{max-height:88dvh}
 @media(max-width:900px){.pf{grid-template-columns:1fr}.pf-list{display:none}.pf-js .pf-panel{display:grid}.pf-js .pf-panel+.pf-panel{border-top:6px solid #e6e9ee}.pf-panel{padding:18px 16px 22px}#workspace .pf-head h2{font-size:22px}.pf-desc{font-size:14px}}
 @media(max-width:520px){.pf .fm-charts{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.pf-js .pf-panel.is-on{animation:none}}
+/* PORTFOLIO intro on one line, so the project list starts near the top */
+#workspace #portfolio .portfolio-explorer .explorer-intro{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 16px;padding:0 0 12px}
+#workspace #portfolio .portfolio-explorer .explorer-intro h1{margin:0;font-size:20px;line-height:1.4;letter-spacing:-.5px}
+#workspace #portfolio .portfolio-explorer .explorer-intro h1 br{display:none}
+#workspace #portfolio .portfolio-explorer .explorer-intro p{display:block;margin:0;font-size:13px;line-height:1.5}
+#workspace #portfolio .pf{margin-top:14px}

@@ -135,3 +135,30 @@ body.window-dragging{user-select:none;-webkit-user-select:none}
 #about.is-current .about-stage.is-booting .desktop-welcome{animation:assist-pop .45s .62s backwards}
 .welcome-title.is-typing:after{content:'_';animation:caret .7s steps(1) infinite}
 @media(prefers-reduced-motion:reduce){.about-stage .window,.about-stage .desktop-welcome,.welcome-title,.welcome-message{transition:none}#about.is-current .about-stage.is-booting .window,#about.is-current .about-stage.is-booting .desktop-welcome{animation:none}}
+
+/* Info: a wider window with room to breathe, so it holds its own next to Profile */
+@media(min-width:1201px){
+  .about-stage .w-info{--w:min(40%,640px)}
+  .about-stage .w-profile{--w:min(58%,900px)}
+  #about .about-stage .w-info.document-window>.section-content{padding:34px 38px 32px}
+  .w-info .welcome-copy h1{font-size:clamp(32px,2.7vw,46px);line-height:1.18;margin-top:12px}
+  .w-info .welcome-description{font-size:16px;line-height:1.8;margin:22px 0 0;padding:4px 0 4px 18px}
+  .w-info .identity-properties{margin-top:28px;padding:16px 18px}
+  .w-info .identity-properties-heading{margin-bottom:14px}
+  .w-info .identity-keywords{gap:10px}
+  .w-info .identity-keywords li{padding:16px 10px}
+  .w-info .identity-keywords strong{font-size:17px}
+}
+@media(min-width:1201px){
+  #about .about-stage .w-info.document-window>.section-content{min-height:min(560px,calc(100vh - 380px));display:flex;flex-direction:column}
+  #about .w-info .welcome-copy{flex:1;display:flex;flex-direction:column}
+  #about .w-info .identity-properties{margin-top:auto}
+  #about .w-info .welcome-description{margin-bottom:28px}
+}
+@media(min-width:1201px) and (max-height:820px){
+  #about .about-stage .w-info.document-window>.section-content{padding:22px 30px 22px}
+  .w-info .welcome-copy h1{font-size:clamp(28px,2.3vw,36px)}
+  .w-info .welcome-description{margin:14px 0 18px;font-size:15px;line-height:1.7}
+  .w-info .identity-properties{padding:12px 14px}
+  .w-info .identity-keywords li{padding:11px 8px}
+}
