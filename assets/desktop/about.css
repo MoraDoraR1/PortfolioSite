@@ -23,13 +23,13 @@ body.window-dragging{user-select:none;-webkit-user-select:none}
 .welcome-avatar{display:grid;place-items:center;width:52px;height:57px;flex-shrink:0;font-size:36px;line-height:1;transform:rotate(-9deg);filter:drop-shadow(2px 3px 0 #354e7018)}
 .welcome-bubble{position:relative;padding:10px 17px 11px;background:#f4f3e9;border:1px solid #8799b0;box-shadow:inset 1px 1px #fff,3px 3px #354e701a;color:#354e70}
 .welcome-bubble:before{content:'';position:absolute;width:10px;height:10px;left:-6px;top:33px;background:#f4f3e9;border-left:1px solid #8799b0;border-bottom:1px solid #8799b0;transform:rotate(45deg)}
-.welcome-system-label{display:flex;align-items:center;gap:6px;font:8px monospace;letter-spacing:1.3px;color:#7a8ca4}
+.welcome-system-label{display:flex;align-items:center;gap:6px;font:8px monospace;letter-spacing:1.3px;color:#5c6f87}
 .welcome-system-label i{display:block;width:5px;height:5px;background:#809b80;box-shadow:1px 1px #fff}
 .welcome-bubble p{font:24px/1.15 'Jersey 10',monospace;letter-spacing:.3px;margin:5px 0}
 .welcome-bubble p>span{color:#9b7453}
-.welcome-message{font-size:11px;color:#718198;line-height:1.5}
+.welcome-message{font-size:11px;color:#5f6e83;line-height:1.5}
 .welcome-step{font-size:inherit;color:#9aa8ba}
-.welcome-next{margin-left:auto;padding:1px 0 1px 8px;font:8px monospace;letter-spacing:.6px;color:#4c698e;cursor:pointer}
+.welcome-next{margin:-7px -6px -7px auto;padding:8px 6px 8px 14px;font:8px monospace;letter-spacing:.6px;color:#4c698e;cursor:pointer}
 .welcome-next:hover,.welcome-next:focus-visible{color:#354e70;text-decoration:underline}
 /* the assistant rotates tips: a fixed width and two message lines keep the bubble's size steady */
 .about-stage .welcome-bubble{width:320px;max-width:100%}
@@ -84,8 +84,8 @@ body.window-dragging{user-select:none;-webkit-user-select:none}
 #about .w-profile .tool-item>div{min-width:0}
 #about .w-profile .tool-name{display:flex;align-items:baseline;flex-wrap:wrap;gap:0 7px;margin:0;font-size:12.5px;line-height:1.4}
 #about .w-profile .tool-name b{font-weight:700;color:#2f3d52}
-#about .w-profile .tool-name small{font:9px monospace;letter-spacing:.8px;color:#768da9}
-#about .w-profile .tool-use{margin:2px 0 0;font-size:11px;line-height:1.5;color:#647184;word-break:keep-all}
+#about .w-profile .tool-name small{font:9px monospace;letter-spacing:.8px;color:#576e8b}
+#about .w-profile .tool-use{margin:2px 0 0;font-size:11px;line-height:1.5;color:#616d80;word-break:keep-all}
 #about .w-profile .tool-legal{margin:7px 0 0;line-height:1.5}
 
 /* Short or narrow desktops: tighter spacing so Profile still fits without scrolling */

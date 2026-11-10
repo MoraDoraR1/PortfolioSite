@@ -17,7 +17,7 @@ body{background:var(--v-bg);color:#303944}
 .taskbar>button{border-color:#a7adb4}.taskbar>button.is-active{background:#f6f4ec;box-shadow:inset 1px 1px #8d98a3,inset -1px -1px white}.taskbar>button.is-minimized{color:#747c86}.tray{background:#e8e8e3;border-color:#a7adb4}
 #start-menu{background:var(--v-chrome)}#start-menu button:hover{background:#cfd5dd}
 button:focus-visible,a:focus-visible{outline-color:var(--v-accent)}
-dialog::backdrop{background:#27334466}.detail-path,:is(#detail-content,.section-content) p{color:#606a76}:is(#detail-content,.section-content){background:#faf8f1}:is(#detail-content,.section-content) a{color:var(--v-accent)}
+dialog::backdrop{background:#27334466}.detail-path,:is(#detail-content,.section-content) p{color:#5d6672}:is(#detail-content,.section-content){background:#faf8f1}:is(#detail-content,.section-content) a{color:var(--v-accent)}
 :is(#detail-content,.section-content) .facts span,:is(#detail-content,.section-content) .resume-details div,:is(#detail-content,.section-content) .game-card,:is(#detail-content,.section-content) .detail-links a{background:#eceef0;border-color:#c8cdd3}
 @media(min-width:1151px) and (max-width:1350px){.desktop{zoom:.85;min-height:1080px;width:1440px;max-width:none;margin:auto}}
 @media(max-width:1150px){.desktop{min-height:1250px}}
