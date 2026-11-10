@@ -190,3 +190,24 @@ html,body{height:100%;overflow:hidden}body{background:#bdc9d7;background-image:r
 :where(#workspace) :is(.story-title,.game-title,.other-heading){margin-block:1em}
 :where(#workspace) .other-heading{font-size:1.17em}
 :where(#workspace) .other-meta h3{font-size:1em;margin-block:1.33em}
+/* project cards show what each project was and what I did in it, from the same facts as the detail window */
+#portfolio .portfolio-explorer .project-grid button{grid-template-columns:92px minmax(0,1fr) auto;grid-template-rows:auto;grid-auto-rows:auto;align-content:start;row-gap:6px;column-gap:20px;padding:22px 22px 20px;text-align:left}
+#portfolio .portfolio-explorer .project-grid button>.folder{grid-column:1;grid-row:1/span 3;align-self:start;margin:4px 0 0}
+#portfolio .portfolio-explorer .project-grid button>b{grid-column:2;grid-row:1;align-self:center}
+#portfolio .portfolio-explorer .project-grid button>.file-badge{grid-column:3;grid-row:1;align-self:center;padding:3px 8px;border:1px solid #b9c6d6;background:#fff;font:11px/1.4 monospace;color:#354e70;white-space:nowrap}
+#portfolio .portfolio-explorer .project-grid button>small{grid-column:2/4;grid-row:2}
+#portfolio .portfolio-explorer .project-grid button>.file-desc{grid-column:2/4;grid-row:3;font-size:13.5px;line-height:1.65;color:#26313c;word-break:keep-all}
+#portfolio .portfolio-explorer .project-grid button>.file-summary{display:none}
+#portfolio .portfolio-explorer .project-grid button>.file-roles{grid-column:1/4;grid-row:4;display:grid;gap:7px;margin-top:6px;padding-top:10px;border-top:1px dashed #c9d3e0}
+#portfolio .project-grid .file-role{display:grid;grid-template-columns:8em minmax(0,1fr);gap:10px;font-size:12.5px;line-height:1.6;word-break:keep-all}
+#portfolio .project-grid .file-role>b{font:650 12.5px/1.6 Pretendard,sans-serif;letter-spacing:0;white-space:nowrap;padding:0;color:#354e70;background:none}
+#portfolio .project-grid .file-role>span{color:#46536a}
+#portfolio .project-grid button:hover .file-role>b{background:none;color:#233f65}
+@media(max-width:620px){
+  #portfolio .portfolio-explorer .project-grid button{grid-template-columns:56px minmax(0,1fr);column-gap:14px;padding:18px 16px}
+  #portfolio .portfolio-explorer .project-grid button>.file-badge{grid-column:2;grid-row:2;justify-self:start}
+  #portfolio .portfolio-explorer .project-grid button>small{grid-column:2;grid-row:3}
+  #portfolio .portfolio-explorer .project-grid button>.file-desc{grid-column:1/3;grid-row:4}
+  #portfolio .portfolio-explorer .project-grid button>.file-roles{grid-column:1/3;grid-row:5}
+  #portfolio .project-grid .file-role{grid-template-columns:1fr;gap:1px}
+}
