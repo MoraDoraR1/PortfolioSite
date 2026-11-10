@@ -282,7 +282,9 @@ try {
   const links = [...document.querySelectorAll('.essay-toc a[data-toc]')];
   if (!root || !links.length) return;
   const mark = id => links.forEach(a => a.classList.toggle('is-here', a.dataset.toc === id));
+  let hold = 0; // after a click, keep the chosen entry marked while the window scrolls to it
   const io = new IntersectionObserver(es => {
+    if (performance.now() < hold) return;
     const seen = es.filter(e => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
     if (seen) mark(seen.target.id);
   }, { root, rootMargin: '0px 0px -60% 0px' });
@@ -293,6 +295,6 @@ try {
     if (!t) return;
     e.preventDefault();
     root.scrollTo({ top: root.scrollTop + t.getBoundingClientRect().top - root.getBoundingClientRect().top - 8, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
-    mark(t.id);
+    mark(t.id); hold = performance.now() + 900;
   }));
 })();

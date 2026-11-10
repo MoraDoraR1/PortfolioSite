@@ -436,3 +436,9 @@ dialog{max-height:88dvh}
 @media(max-width:1200px){.essay-read{grid-template-columns:1fr;gap:24px}.essay-toc{position:static}}
 @media(max-width:620px){#workspace .es-sec p{font-size:16px!important}#workspace .es-q{font-size:19px}#workspace .es-ch-head .story-title{font-size:22px}}
 .essay-text{background:#fff;border:1px solid #d6dde7;padding:36px 44px 28px;max-width:860px}@media(max-width:620px){.essay-text{padding:22px 18px 16px}}
+/* wide screens: the white page fills the window, and each chapter's two sections sit side by side so lines stay readable */
+@media(min-width:1500px){
+  .essay-text{max-width:none}
+  .es-ch{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 56px;align-items:start}
+  .es-ch-head{grid-column:1/-1}
+}
