@@ -251,23 +251,80 @@ html,body{height:100%;overflow:hidden}body{background:#bdc9d7;background-image:r
 @media(max-width:620px){.dwh-shots{grid-template-columns:1fr}}
 
 /* featured card: itch.io validation metrics fill the space under the roles */
-#portfolio .portfolio-explorer .project-grid button>.file-metrics{display:none}
 #portfolio .portfolio-explorer .project-grid button.is-featured>.file-metrics{display:block;grid-column:1/4;grid-row:5;margin-top:6px;align-self:start}
 #portfolio .project-grid .file-metrics-head{display:block;margin:0 0 6px;font:650 12.5px/1.5 Pretendard,sans-serif;color:#354e70}
-#portfolio .project-grid .file-metrics-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
-#portfolio .project-grid .file-metric{display:grid;gap:1px;padding:8px 10px;border:1px solid #c8d1df;background:#fff;text-align:left}
-#portfolio .project-grid .file-metric>b{font:700 18px/1.2 Pretendard,sans-serif;color:#233f65;font-variant-numeric:tabular-nums;letter-spacing:0;padding:0;background:none}
-#portfolio .project-grid .file-metric>span{font-size:11.5px;color:#46536a;word-break:keep-all}
-#portfolio .project-grid button:hover .file-metric>b{background:none;color:#233f65}
 #portfolio .project-grid .file-metrics-note{display:block;margin-top:6px;font-size:11px;color:#4b586b}
 @media(max-width:1200px){#portfolio .portfolio-explorer .project-grid button.is-featured>.file-metrics{grid-column:1/-1;grid-row:6}}
 
-@media(max-width:620px){#portfolio .portfolio-explorer .project-grid button.is-featured>.file-metrics{grid-column:1/3;grid-row:7}#portfolio .project-grid .file-metrics-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 /* wide desktops: the six metrics sit in one row and the key art stretches to the card's height,
    resting on its bottom edge with the art's own night sky above it */
 @media(min-width:1500px){
-  #portfolio .project-grid .file-metrics-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
   #portfolio .portfolio-explorer .project-grid button.is-featured>.file-art{align-self:stretch;aspect-ratio:auto;background:#2a0225;min-height:220px}
   #portfolio .portfolio-explorer .project-grid button.is-featured>.file-art img{object-fit:contain;object-position:50% 100%}
 }
+
+/* PORTFOLIO: the explorer takes the whole page now that the Read me note is gone */
+#portfolio.portfolio-page{display:flex;flex-direction:column}
+#portfolio .portfolio-explorer{flex:1 1 auto;width:100%;min-height:0;height:100%}
+
+/* cover image on every non-featured card: real screen for COMSTOCK, concept illustrations for the rest */
+#portfolio .portfolio-explorer .project-grid button:not(.is-featured)>.file-cover{display:block;grid-column:1/-1;grid-row:1;margin:-22px -22px 10px;overflow:hidden;aspect-ratio:1200/525;border-bottom:2px solid #554839;background:#2a2230}
+#portfolio .project-grid .file-cover img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .45s cubic-bezier(.22,.7,.2,1)}
+#portfolio .project-grid button:hover .file-cover img{transform:scale(1.03)}
+#portfolio .portfolio-explorer .project-grid button:not(.is-featured)>.folder{grid-row:2/span 3}
+#portfolio .portfolio-explorer .project-grid button:not(.is-featured)>b,#portfolio .portfolio-explorer .project-grid button:not(.is-featured)>.file-badge{grid-row:2}
+#portfolio .portfolio-explorer .project-grid button:not(.is-featured)>small{grid-row:3}
+#portfolio .portfolio-explorer .project-grid button:not(.is-featured)>.file-desc{grid-row:4}
+#portfolio .portfolio-explorer .project-grid button:not(.is-featured)>.file-roles{grid-row:5}
+#portfolio .portfolio-explorer .project-grid button:not(.is-featured)>.file-metrics{display:block;grid-column:1/-1;grid-row:6;margin-top:4px}
+
+/* metric charts: columns on a shared y axis, values printed on each bar */
+#portfolio .project-grid .file-metrics-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 12px}
+#portfolio .project-grid .fm-legend{display:inline-flex;gap:12px;font:500 11.5px/1.4 Pretendard,sans-serif;color:#46536a}
+#portfolio .project-grid .fm-legend>span{display:inline-flex;align-items:center;gap:5px}
+#portfolio .project-grid .fm-legend i{display:inline-block;width:10px;height:10px;border-radius:2px}
+#portfolio .project-grid .fm-charts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr)) minmax(0,.8fr);gap:8px;align-items:stretch}
+#portfolio .project-grid .fm-charts.is-single{grid-template-columns:minmax(0,1.6fr) minmax(0,.7fr)}
+#portfolio .project-grid .fm-chart{display:block;padding:9px 10px 4px;border:1px solid #c8d1df;background:#fff}
+#portfolio .project-grid .fm-chart-title{display:block;font:650 12px/1.4 Pretendard,sans-serif;color:#26313c}
+#portfolio .project-grid .fm-svg{display:block;width:100%;height:auto;overflow:visible}
+.fm-svg .g{stroke:#e3e8ef;stroke-width:1}.fm-svg .g.b{stroke:#8f9cae}
+.fm-svg .ax{font:10px Pretendard,sans-serif;fill:#5a6577}
+.fm-svg .cat{font:600 11px Pretendard,sans-serif;fill:#26313c}
+.fm-svg .v{font:16px Jersey10,'Jersey 10',monospace;fill:#233f65}.fm-svg .v.lt{fill:#5a6577}
+.fm-svg g>path{transition:opacity .15s}.fm-svg g:hover>path{opacity:.8}
+#portfolio .project-grid .fm-kpis{display:grid;gap:8px;align-content:stretch}
+#portfolio .project-grid .fm-kpi{display:flex;flex-direction:column;justify-content:center;gap:1px;padding:8px 12px;border:1px solid #c8d1df;border-left:4px solid #b5643a;background:#fff;font-size:11.5px;line-height:1.45;color:#46536a;word-break:keep-all}
+#portfolio .project-grid .fm-kpi>b{font:30px/1 Jersey10,'Jersey 10',monospace;letter-spacing:.5px;color:#233f65;padding:0;background:none}
+#portfolio .project-grid button:hover .fm-kpi>b{background:none;color:#233f65}
+#portfolio .project-grid .fm-stars{color:#b5643a;letter-spacing:1px;font-size:13px}
+#portfolio .project-grid .fm-stars>s{text-decoration:none;background:linear-gradient(90deg,#b5643a 50%,#c8d1df 50%);-webkit-background-clip:text;background-clip:text;color:transparent}
+@media(max-width:900px){#portfolio .project-grid .fm-charts{grid-template-columns:repeat(2,minmax(0,1fr))}#portfolio .project-grid .fm-charts>.fm-kpis{grid-column:1/-1;grid-template-columns:repeat(3,minmax(0,1fr))}#portfolio .project-grid .fm-charts.is-single>.fm-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){
+  #portfolio .portfolio-explorer .project-grid button:not(.is-featured)>.file-cover{margin:-18px -16px 8px}
+  #portfolio .portfolio-explorer .project-grid button:not(.is-featured)>.folder{grid-row:2/span 2}
+  #portfolio .portfolio-explorer .project-grid button:not(.is-featured)>b{grid-row:2}
+  #portfolio .portfolio-explorer .project-grid button:not(.is-featured)>.file-badge{grid-row:3}
+  #portfolio .portfolio-explorer .project-grid button:not(.is-featured)>small{grid-row:4}
+  #portfolio .portfolio-explorer .project-grid button:not(.is-featured)>.file-desc{grid-row:5}
+  #portfolio .portfolio-explorer .project-grid button:not(.is-featured)>.file-roles{grid-row:6}
+  #portfolio .portfolio-explorer .project-grid button:not(.is-featured)>.file-metrics{grid-row:7}
+  #portfolio .portfolio-explorer .project-grid button.is-featured>.file-metrics{grid-column:1/3;grid-row:7}
+  #portfolio .project-grid .fm-charts,#portfolio .project-grid .fm-charts.is-single{grid-template-columns:1fr}
+  #portfolio .project-grid .fm-charts>.fm-kpis{grid-template-columns:1fr 1fr}
+}
+/* two released games run full width; the three smaller projects share one row */
+@media(min-width:1101px){#portfolio .portfolio-explorer .project-grid{grid-template-columns:repeat(3,minmax(0,1fr))}#portfolio .portfolio-explorer .project-grid button.is-featured{grid-column:1/-1}}
+#portfolio .portfolio-explorer .project-grid button.is-wide>.file-art{aspect-ratio:16/9}
+#portfolio .portfolio-explorer .project-grid button.is-wide>.file-art img{object-fit:cover;object-position:50% 50%}
+@media(min-width:1500px){#portfolio .portfolio-explorer .project-grid button.is-wide>.file-art{background:#2a2230}#portfolio .portfolio-explorer .project-grid button.is-wide>.file-art img{object-fit:cover;object-position:50% 50%}}
+#portfolio .project-grid .fm-charts{grid-template-columns:repeat(2,minmax(0,1fr))}
+#portfolio .project-grid .fm-charts>.fm-kpis{grid-column:1/-1;grid-template-columns:repeat(3,minmax(0,1fr))}
+#portfolio .project-grid .fm-charts.is-single{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}
+#portfolio .project-grid .fm-charts.is-single>.fm-kpis{grid-column:auto;grid-template-columns:1fr}
+.fm-svg .ax{font-size:10.5px}.fm-svg .cat{font-size:11.5px}.fm-svg .v{font-size:17px}
+@media(max-width:620px){#portfolio .project-grid .fm-charts.is-single{grid-template-columns:1fr}#portfolio .project-grid .fm-charts.is-single>.fm-kpis,#portfolio .project-grid .fm-charts>.fm-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+#portfolio .portfolio-explorer .project-grid{align-content:start;align-items:start}#portfolio .portfolio-explorer .project-grid button:not(.is-featured){align-self:stretch;align-content:start}
+#portfolio .project-grid .fm-svg{max-height:210px}@media(min-width:1500px){#portfolio .portfolio-explorer .project-grid button.is-wide>.file-art{aspect-ratio:auto;min-height:0}}
+@media(max-width:620px){#portfolio .project-grid .fm-charts{grid-template-columns:1fr}}

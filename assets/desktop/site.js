@@ -154,16 +154,16 @@ function openDialog(name,html,projectMode=false) {
 const projectDetails = {
   dwh: {icon:'crosshair', art:'assets/portfolio/dwh/keyart.webp', summary:'용이 달리며 도시를 부수는 PC 인크리멘탈 게임입니다. itch.io에 검증판을 무료로 공개했고 Steam 출시를 준비하고 있습니다.', contributions:[['액티브 스킬','메테오·허리케인·지진 3종의 사용 규칙과 수치를 설계하고, 강화를 빼고 소모성 아이템으로 바꾸며 기획서를 Ver04까지 고쳤습니다.'],['변신·동굴','아이스·윈드·썬더·라바 드래곤 변신 4종과 동굴 콘텐츠를 기획했습니다.'],['UI 기획','게임 화면의 UI 기획서를 Ver03까지 작성했습니다.'],['지표 분석','itch.io 지표에서 강점과 보완점을 정리하고 다음 방향을 제안하는 프로젝트 정리 문서를 썼습니다.']], steps:[]},
   comstock: {icon:'crosshair', summary:'5인 팀으로 완성하고 itch.io에 출시한 뱀서라이크 게임입니다.', contributions:[['핵심 구조 설계','부팀장과 게임의 핵심과 틀을 먼저 정리해 팀에 공유했습니다.'],['팀 의견 조율','개인의 선호보다 게임의 핵심에 부합하는지를 기준으로 의견을 정리했습니다.'],['개발 범위 조정','일정과 최종 목표를 확인하고 초기 아이템·무기 구성을 조정했습니다.']], steps:['핵심 정의','팀 기준 공유','범위 조정']},
-  tomorrow: {icon:'clock', summary:'2인 팀으로 진행한 방치형 클리커 프로젝트입니다.', contributions:[['업무 분배','팀장으로서 작업을 나누고 프로젝트를 진행했습니다.'],['콘셉트·시스템 기획','콘셉트와 시스템 기획서를 작성했습니다.'],['기능 구현','작성한 기획을 바탕으로 실제 기능까지 구현했습니다.']], steps:['업무 분배','기획서 작성','기능 구현']},
-  dice: {icon:'dice', summary:'6인 팀의 부팀장으로 참여한 주사위 보드게임 프로젝트입니다.', contributions:[['일정 관리','팀의 작업 일정을 관리했습니다.'],['콘셉트 방향','프로젝트의 콘셉트 방향성을 제시했습니다.']], steps:['일정 관리','콘셉트 방향']},
-  space: {icon:'space', summary:'2인 팀으로 참여해 제18회 한국공간디자인 전국 공모전 특선을 수상한 프로젝트입니다.', contributions:[['건축 구조 기획','접근성을 고려해 공간의 구조를 기획했습니다.'],['공간 배치','이동 동선을 고려해 공간 배치를 계획했습니다.']], steps:['접근성','이동 동선','공간 배치']}
+  tomorrow: {art:'assets/portfolio/covers/tomorrow.webp', artAlt:'콘셉트 일러스트', icon:'clock', summary:'2인 팀으로 진행한 방치형 클리커 프로젝트입니다.', contributions:[['업무 분배','팀장으로서 작업을 나누고 프로젝트를 진행했습니다.'],['콘셉트·시스템 기획','콘셉트와 시스템 기획서를 작성했습니다.'],['기능 구현','작성한 기획을 바탕으로 실제 기능까지 구현했습니다.']], steps:['업무 분배','기획서 작성','기능 구현']},
+  dice: {art:'assets/portfolio/covers/dice.webp', artAlt:'콘셉트 일러스트', icon:'dice', summary:'6인 팀의 부팀장으로 참여한 주사위 보드게임 프로젝트입니다.', contributions:[['일정 관리','팀의 작업 일정을 관리했습니다.'],['콘셉트 방향','프로젝트의 콘셉트 방향성을 제시했습니다.']], steps:['일정 관리','콘셉트 방향']},
+  space: {art:'assets/portfolio/covers/space.webp', artAlt:'콘셉트 일러스트', icon:'space', summary:'2인 팀으로 참여해 제18회 한국공간디자인 전국 공모전 특선을 수상한 프로젝트입니다.', contributions:[['건축 구조 기획','접근성을 고려해 공간의 구조를 기획했습니다.'],['공간 배치','이동 동선을 고려해 공간 배치를 계획했습니다.']], steps:['접근성','이동 동선','공간 배치']}
 };
 function openProject(key) {
   if(key==='contact') {openDialog('Contact.txt','<h2>연락하기</h2><p>게임 기획자 오승명</p>'+contactHTML);return;}
   const project=projects[key], detail=projectDetails[key];if(!project || !detail)return;
   const number=Object.keys(projects).indexOf(key)+1;
   const preview=detail.art
-    ? `<div class="project-preview actual-preview art-preview"><img src="${detail.art}" alt="${project.name} 키 아트"></div>`
+    ? `<div class="project-preview actual-preview art-preview"><img src="${detail.art}" alt="${project.name} ${detail.artAlt||'키 아트'}"></div>`
     : key==='comstock'
     ? '<div class="project-preview actual-preview"><video id="project-loop" controls muted loop playsinline preload="metadata" poster="assets/desktop/comstock.jpg" src="assets/portfolio/comstock/gameplay.mp4"></video><div class="preview-caption"><span>실제 플레이 영상 · 반복 재생</span><span>COMSTOCK / GAMEPLAY</span></div></div>'
     : `<div class="project-preview concept-preview preview-${key}" role="img" aria-label="${project.name} 기여 내용 개념 애니메이션"><span class="concept-label">CONTRIBUTION MAP / 0${number}</span><svg class="concept-icon" viewBox="0 0 48 48" aria-hidden="true"><use href="#icon-${detail.icon}"/></svg><div class="concept-steps">${detail.steps.map((step,i)=>`<span style="--step:${i}"><b>0${i+1}</b>${step}</span>`).join('')}</div><p>기여 내용을 표현한 개념 애니메이션 · 실제 게임 화면이 아닙니다.</p></div>`;
