@@ -248,3 +248,31 @@ try {
     helpTimer = setTimeout(() => {helpIntro = false;renderWheelHelp();},6500);
   }
 } catch { /* Hover, keyboard focus and tap still work without storage. */ }
+// PORTFOLIO list pane: choosing a project shows it in the preview pane; double-click opens its file
+(() => {
+  const pf = document.querySelector('[data-pf]');
+  if (!pf) return;
+  pf.classList.add('pf-js');
+  const tabs = [...pf.querySelectorAll('[role="tab"]')];
+  const select = (tab, focus) => {
+    tabs.forEach(t => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).classList.toggle('is-on', on);
+    });
+    if (focus) tab.focus();
+    const body = pf.closest('.explorer-body');
+    if (body && body.scrollTop > pf.offsetTop) body.scrollTop = pf.offsetTop - 12;
+  };
+  pf.addEventListener('click', e => { const t = e.target.closest('[role="tab"]'); if (t) select(t); });
+  pf.addEventListener('dblclick', e => { const t = e.target.closest('[role="tab"]'); if (t) openProject(t.dataset.pfKey); });
+  pf.addEventListener('keydown', e => {
+    const i = tabs.indexOf(e.target);
+    if (i < 0) return;
+    const to = { ArrowDown: i + 1, ArrowUp: i - 1, Home: 0, End: tabs.length - 1 }[e.key];
+    if (to === undefined) return;
+    e.preventDefault();
+    select(tabs[(to + tabs.length) % tabs.length], true);
+  });
+})();

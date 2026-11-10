@@ -1,23 +1,36 @@
-/* Same components, type and content; only placement, size and palette vary. */
+/* Same components,type and content; only placement,size and palette vary. */
 body{background:var(--v-bg);color:#303944}
 :root{--violet:var(--v-accent);--paper:#faf8f1}
 .desktop{min-height:1080px;height:auto;max-width:1440px;background-image:radial-gradient(#fff3 .6px,transparent .6px);background-size:4px 4px}
 .window,dialog,.taskbar{background:var(--v-chrome);border-color:#7f858a}
 .window,.window.is-active{box-shadow:inset 1px 1px #fff,inset -1px -1px #90969b,4px 5px #26313c22,10px 14px 30px #26313c0d}
-.titlebar{background:var(--v-inactive)}.window.is-active>.titlebar,dialog>.titlebar,#start-menu strong{background:var(--v-accent)}
+.titlebar{background:var(--v-inactive)}
+.window.is-active>.titlebar,dialog>.titlebar,#start-menu strong{background:var(--v-accent)}
 .titlebar button{color:#303944;background:var(--v-chrome);border-color:#4e5964}
-.window-menu,.menu-hint,.status,.project-grid small,.explorer-intro p{color:#606773}
-.address div,.explorer-body{background-color:#faf8f1}.address,.address div,.window-menu button,.status span{border-color:#b5bac0}
-.explorer-intro{border-color:#dbdce0}.explorer-intro>span,.role{color:var(--v-accent)}
-.directory-stamp{color:#777f8a!important}.directory-stamp b{color:#8b929a}
-.project-grid button:hover{background:#e7e8eb;border-color:#8993a0}.project-grid button:hover b{background:var(--v-accent)}
-.orange{background:#d9ba8f}.pink{background:#d5b1aa}.green{background:#b5c4b4}.blue{background:#aabdd2}
-.folder-art,.folder i{color:#59564e}.folder,.folder:before{border-color:#625e55}
-.retro-button{background:#f0eee5;color:#384656;border-color:#88939d}.taskbar{box-shadow:0 -2px #a3aab1}
-.taskbar>button{border-color:#a7adb4}.taskbar>button.is-active{background:#f6f4ec;box-shadow:inset 1px 1px #8d98a3,inset -1px -1px white}.taskbar>button.is-minimized{color:#747c86}.tray{background:#e8e8e3;border-color:#a7adb4}
-#start-menu{background:var(--v-chrome)}#start-menu button:hover{background:#cfd5dd}
+.window-menu,.menu-hint,.status,.explorer-intro p{color:#606773}
+.address div,.explorer-body{background-color:#faf8f1}
+.address,.address div,.window-menu button,.status span{border-color:#b5bac0}
+.explorer-intro{border-color:#dbdce0}
+.explorer-intro>span,.role{color:var(--v-accent)}
+.orange{background:#d9ba8f}
+.pink{background:#d5b1aa}
+.green{background:#b5c4b4}
+.blue{background:#aabdd2}
+.folder-art,.folder i{color:#59564e}
+.folder,.folder:before{border-color:#625e55}
+.retro-button{background:#f0eee5;color:#384656;border-color:#88939d}
+.taskbar{box-shadow:0 -2px #a3aab1}
+.taskbar>button{border-color:#a7adb4}
+.taskbar>button.is-active{background:#f6f4ec;box-shadow:inset 1px 1px #8d98a3,inset -1px -1px white}
+.taskbar>button.is-minimized{color:#747c86}
+.tray{background:#e8e8e3;border-color:#a7adb4}
+#start-menu{background:var(--v-chrome)}
+#start-menu button:hover{background:#cfd5dd}
 button:focus-visible,a:focus-visible{outline-color:var(--v-accent)}
-dialog::backdrop{background:#27334466}.detail-path,:is(#detail-content,.section-content) p{color:#5d6672}:is(#detail-content,.section-content){background:#faf8f1}:is(#detail-content,.section-content) a{color:var(--v-accent)}
+dialog::backdrop{background:#27334466}
+.detail-path,:is(#detail-content,.section-content) p{color:#5d6672}
+:is(#detail-content,.section-content){background:#faf8f1}
+:is(#detail-content,.section-content) a{color:var(--v-accent)}
 :is(#detail-content,.section-content) .facts span,:is(#detail-content,.section-content) .resume-details div,:is(#detail-content,.section-content) .game-card,:is(#detail-content,.section-content) .detail-links a{background:#eceef0;border-color:#c8cdd3}
 @media(min-width:1151px) and (max-width:1350px){.desktop{zoom:.85;min-height:1080px;width:1440px;max-width:none;margin:auto}}
 @media(max-width:1150px){.desktop{min-height:1250px}}
