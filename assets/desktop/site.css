@@ -211,3 +211,11 @@ html,body{height:100%;overflow:hidden}body{background:#bdc9d7;background-image:r
   #portfolio .portfolio-explorer .project-grid button>.file-roles{grid-column:1/3;grid-row:5}
   #portfolio .project-grid .file-role{grid-template-columns:1fr;gap:1px}
 }
+
+/* project icons: each card shows the project's own picture (COMSTOCK: its hero from the game) in place of a folder */
+#portfolio .project-grid button>.folder{aspect-ratio:1/1;height:auto;background:#e3e6e8;overflow:hidden}
+#portfolio .project-grid button>.folder:before,#portfolio .project-grid button>.folder>.folder-art{display:none}
+#portfolio .project-grid .proj-icon{display:block;position:absolute;inset:0}
+#portfolio .project-grid .proj-icon img{display:block;width:100%;height:100%;object-fit:cover;image-rendering:pixelated}
+#portfolio .project-grid button[data-open="comstock"] .proj-icon img{image-rendering:auto}
+#portfolio .project-grid button>.folder>i{display:none}
