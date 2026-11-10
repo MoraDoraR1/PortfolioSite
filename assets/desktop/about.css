@@ -69,11 +69,11 @@ body.window-dragging{user-select:none;-webkit-user-select:none}
 .w-profile .meta-list li{padding:7px 0}
 .w-profile .profile-copy{padding-top:0}
 .w-profile .profile-copy .kicker,.w-profile .profile-copy .section-title{display:none}
-.w-profile .profile-copy h3{font-size:14px;margin:0 0 8px;line-height:1.6}
+.w-profile .profile-copy .profile-headline{font-size:14px;margin:0 0 8px;line-height:1.6}
 .w-profile .profile-facts{grid-template-columns:1fr!important;gap:7px}
 .w-profile .profile-fact{padding:9px 12px}
 .w-profile .profile-fact-head{display:none}
-.w-profile .profile-fact h4{margin:0 0 3px;font-size:13px}
+.w-profile .profile-fact h3{margin:0 0 3px;font-size:13px}
 .w-profile .profile-fact-list li{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:0 10px;margin:4px 0}
 .w-profile .profile-fact-list span{margin:0}
 /* Tools at the foot of Profile: one card per tool, three across.

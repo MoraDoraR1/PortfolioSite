@@ -12,7 +12,7 @@
 #workspace .game-card p{font-size:13px;color:var(--read-ink)}
 #workspace .game-card .tag,#workspace .field-list span{font-size:11px}
 #workspace .game-card .tag{color:var(--label-ink)}
-#workspace .other-meta h4{font-size:13px}
+#workspace .other-meta h3{font-size:13px}
 #workspace .other-time{font-size:11px;color:var(--label-ink)}
 
 /* PORTFOLIO */
