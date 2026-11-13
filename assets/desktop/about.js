@@ -116,7 +116,7 @@
     { title: 'Move the windows', wide: '창은 제목표시줄을 끌어 옮길 수 있어요. 클릭한 창은 맨 앞으로 오고 더블클릭하면 크게 볼 수 있어요.',
       text: '창 오른쪽 위 □ 버튼을 누르면 창을 크게 볼 수 있어요.' },
     { title: 'Play the projects', text: 'PORTFOLIO 폴더에서 COMSTOCK을 열면 플레이 영상과 itch.io 출시 지표를 볼 수 있어요.' },
-    { title: 'Read my notes', text: 'ESSAY에는 자기소개서를, GAME LOG에는 플레이하며 찾은 기획의 단서를 담았어요.' },
+    { title: 'Read my notes', text: 'ESSAY에는 자기소개서를, AI WORK에는 AI 활용 방식을, GAME LOG에는 플레이하며 찾은 기획의 단서를 담았어요.' },
   ];
   const bubbleBox = bubble && bubble.querySelector('.welcome-bubble');
   if (bubbleBox) {

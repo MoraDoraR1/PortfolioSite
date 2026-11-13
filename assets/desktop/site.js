@@ -13,7 +13,7 @@ const workspace = document.querySelector('#workspace');
 const modal = document.querySelector('#detail');
 const content = document.querySelector('#detail-content');
 const navLinks = [...document.querySelectorAll('.desktop-folders a')];
-const labels = ['ABOUT','PORTFOLIO','ESSAY','GAME LOG'];
+const labels = ['ABOUT','PORTFOLIO','ESSAY','AI WORK','GAME LOG'];
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 let current = 0, wheelAmount = 0, lastWheel = 0, lockedUntil = 0;
 const tasks = document.querySelector('#task-buttons');

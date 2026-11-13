@@ -442,3 +442,34 @@ dialog{max-height:88dvh}
   .es-ch{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 56px;align-items:start}
   .es-ch-head{grid-column:1/-1}
 }
+/* ESSAY: one column of larger text (3/5) beside a photo for each chapter (2/5); less room above the letter */
+#workspace #essay .section-content{padding-top:20px}
+#workspace #essay .section-title{margin:0 0 12px}
+#workspace #essay .essay-read{margin-top:0}
+#workspace #essay .essay-toc{padding-top:6px}
+#workspace #essay .essay-text{max-width:none;padding:30px 40px 24px}
+@media(min-width:1500px){#workspace #essay .es-ch{display:block}}
+.es-ch-body{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:44px;align-items:start}
+.es-photo{position:sticky;top:14px;margin:30px 0 0;border:2px solid #554839;background:#2a2230;overflow:hidden}
+.es-photo img{display:block;width:100%;height:auto;max-height:68vh;object-fit:cover}
+#workspace #essay .es-ch-head .story-title{font-size:30px}
+#workspace #essay .es-ch-sub{font-size:17px}
+#workspace #essay .es-q{font-size:24px}
+#workspace #essay .es-sec p{font-size:19px!important;line-height:1.9}
+#workspace #essay .em-no{width:46px;height:46px;font-size:30px}
+@media(max-width:1200px){.es-ch-body{grid-template-columns:1fr;gap:8px}.es-photo{position:static;max-width:520px}#workspace #essay .es-sec p{font-size:17px!important}#workspace #essay .es-q{font-size:21px}}
+@media(max-width:620px){#workspace #essay .essay-text{padding:22px 18px 16px}#workspace #essay .es-sec p{font-size:16px!important}#workspace #essay .es-ch-head .story-title{font-size:24px}}
+
+/* AI WORK: one entry per way of working, each with room for a picture */
+#workspace #ai .section-content{padding-top:20px}
+#workspace #ai .section-title{margin:0 0 6px}
+#workspace #ai .section-lead{margin:0 0 26px;font-size:17px;color:#46536a}
+.ai-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.ai-item{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1fr);gap:22px;align-items:start;padding:22px;background:#fff;border:1px solid #d6dde7}
+.ai-shot{margin:0;aspect-ratio:4/3;display:grid;place-items:center;border:2px dashed #b9c6d6;background:#f4f6f9;color:#6a778a;font-size:13px}
+#workspace #ai .ai-item .story-title{margin:0 0 10px;font-size:22px;line-height:1.35;color:#1f2d40}
+#workspace #ai .ai-item p{margin:0;font-size:16.5px;line-height:1.8;color:#26313c}
+#workspace #ai .ai-item p.ai-todo{margin-top:12px;font-size:13px;color:#6a778a}
+@media(max-width:1200px){.ai-list{grid-template-columns:1fr}}
+@media(max-width:620px){.ai-item{grid-template-columns:1fr}}
+#workspace .es-photo img{margin:0}
