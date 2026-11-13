@@ -298,3 +298,27 @@ try {
     mark(t.id); hold = performance.now() + 900;
   }));
 })();
+// GAME LOG: "분석 보기" opens the analysis in the document window and stays pressed while it is open
+(() => {
+  let opener = null;
+  document.querySelectorAll('#game-log .analysis-open').forEach(button => button.addEventListener('click', () => {
+    const card = button.closest('.game-card');
+    const title = card.querySelector('.game-title').textContent;
+    const img = card.querySelector('.game-cover img');
+    const html = `<div class="analysis-pop">${img ? `<img class="ap-cover" src="${img.getAttribute('src')}" alt="${img.alt}">` : ''}`
+      + `<p class="ap-meta">${card.querySelector('.game-meta').textContent}</p>`
+      + `<p class="ap-lesson">${card.querySelector('.game-lesson').textContent}</p>`
+      + `<div class="ap-body">${card.querySelector('.analysis-body').innerHTML}</div></div>`;
+    opener = button;
+    button.classList.add('is-open');
+    button.setAttribute('aria-expanded', 'true');
+    openDialog(title + ' 분석', html);
+  }));
+  modal.addEventListener('close', () => {
+    if (!opener) return;
+    opener.classList.remove('is-open');
+    opener.setAttribute('aria-expanded', 'false');
+    opener.focus({ preventScroll: true });
+    opener = null;
+  });
+})();
