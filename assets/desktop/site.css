@@ -351,7 +351,7 @@ dialog{max-height:88dvh}
 .pf-item{display:grid;grid-template-columns:40px minmax(0,1fr) auto;grid-template-rows:auto auto;column-gap:10px;align-items:center;padding:8px;text-align:left;color:#26313c}
 .pf-item:hover{background:#e3e9f1;filter:none}
 .pf-icon{grid-row:1/3;width:40px;height:40px;border:1px solid #554839;object-fit:cover;image-rendering:pixelated;background:#e3e6e8}
-.pf-item[data-pf-key=comstock] .pf-icon{image-rendering:auto}
+.pf-item:is([data-pf-key=comstock],[data-pf-key=tomorrow],[data-pf-key=dice],[data-pf-key=space]) .pf-icon{image-rendering:auto}
 .pf-name{font-weight:650;font-size:14px;line-height:1.35}
 .pf-type{grid-column:2;font-size:12px;line-height:1.4;color:#46536a}
 .pf-state{grid-column:3;grid-row:1/3;font-size:11.5px;color:#46536a;white-space:nowrap}
