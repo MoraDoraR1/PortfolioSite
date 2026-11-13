@@ -473,3 +473,23 @@ dialog{max-height:88dvh}
 @media(max-width:1200px){.ai-list{grid-template-columns:1fr}}
 @media(max-width:620px){.ai-item{grid-template-columns:1fr}}
 #workspace .es-photo img{margin:0}
+/* GAME LOG: totals up top, a one-line lesson on every game */
+.log-totals{display:flex;flex-wrap:wrap;gap:12px 40px;margin:18px 0 6px}
+.log-totals p{display:flex;align-items:baseline;gap:10px;margin:0!important}
+.log-totals b{font:44px/1 'Jersey 10',monospace;color:#233f65;letter-spacing:.5px}
+#workspace .log-totals span{font-size:15px;font-weight:600;color:#26313c}
+#workspace .log-totals-note{margin:4px 0 0;font-size:12.5px;color:#4b586b}
+#game-log .game-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+#workspace #game-log .game-meta{margin:2px 0 8px;font-size:13px;color:#4b586b}
+#workspace #game-log .game-lesson{margin:0 0 10px;padding:10px 12px;border-left:3px solid #b5643a;background:#fffdf7;font-size:15px!important;line-height:1.7;font-weight:600;color:#1f2d40!important;word-break:keep-all}
+.game-cover--noimg{height:140px;margin:0 0 16px;display:grid;place-content:center;text-align:center;gap:4px;border:1px solid #c5b7ce;color:#fff}
+.game-cover--noimg.is-aion{background:radial-gradient(circle at 50% 30%,#7fb3ff 0%,#2c4f8f 45%,#141f3d 100%)}
+.game-cover--noimg.is-uwo{background:radial-gradient(circle at 50% 30%,#f0d08a 0%,#2f6b8f 45%,#11314a 100%)}
+.gc-name{font:800 26px/1.2 Pretendard,sans-serif;letter-spacing:-.5px;text-shadow:0 2px 8px #0008}
+.gc-en{font:20px/1 'Jersey 10',monospace;letter-spacing:1px;opacity:.9}
+#game-log .other-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+#workspace #game-log .other-note{margin:6px 0 0;font-size:13.5px;line-height:1.65;color:#36404f;word-break:keep-all}
+#workspace #game-log .other-meta h3{margin:8px 0 2px}
+@media(max-width:1200px){#game-log .game-grid{grid-template-columns:1fr 1fr}#game-log .other-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:720px){#game-log .game-grid{grid-template-columns:1fr}#game-log .other-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){#game-log .other-grid{grid-template-columns:1fr}}
