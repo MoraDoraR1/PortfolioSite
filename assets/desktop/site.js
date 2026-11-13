@@ -114,7 +114,7 @@ function canScroll(target,delta) {
   return false;
 }
 workspace.addEventListener('wheel',event => {
-  if(event.ctrlKey || modal.open) return;
+  if(event.ctrlKey || document.querySelector("dialog[open]")) return;
   const delta = (Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY) * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? workspace.clientHeight : 1);
   if(!delta) return;
   if(canScroll(event.target,delta)) {wheelAmount=0;return;}
@@ -126,7 +126,7 @@ workspace.addEventListener('wheel',event => {
   if(Math.abs(wheelAmount)>=70) go(current+Math.sign(wheelAmount));
 },{passive:false});
 document.addEventListener('keydown',event => {
-  if(modal.open || event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || event.target.closest('input,textarea,select,video,[contenteditable="true"]')) return;
+  if(document.querySelector("dialog[open]") || event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || event.target.closest('input,textarea,select,video,[contenteditable="true"]')) return;
   if(event.key==='ArrowRight' || event.key==='ArrowLeft') {
     event.preventDefault();go(current+(event.key==='ArrowRight'?1:-1),true);
   }
@@ -137,7 +137,7 @@ workspace.addEventListener('touchstart',event => {
   touch={x:event.touches[0].clientX,y:event.touches[0].clientY};
 },{passive:true});
 workspace.addEventListener('touchend',event => {
-  if(!touch || modal.open) return;
+  if(!touch || document.querySelector("dialog[open]")) return;
   const dx=event.changedTouches[0].clientX-touch.x,dy=event.changedTouches[0].clientY-touch.y;
   if(Math.abs(dx)>65 && Math.abs(dx)>Math.abs(dy)*1.5) go(current+(dx<0?1:-1),true);
   touch=null;
@@ -321,4 +321,22 @@ try {
     opener.focus({ preventScroll: true });
     opener = null;
   });
+})();
+(() => {
+  let opener = null;
+  document.querySelectorAll('#ai .aw-proof').forEach(button => button.addEventListener('click', () => {
+    opener = button; button.classList.add('is-open');
+    openDialog(button.dataset.title, button.nextElementSibling.innerHTML);
+  }));
+  modal.addEventListener('close', () => { if (!opener) return; opener.classList.remove('is-open'); opener.focus({preventScroll:true}); opener = null; });
+  const game = document.getElementById('game-window');
+  if (!game) return;
+  const frame = game.querySelector('iframe');
+  let gameOpener = null;
+  document.querySelectorAll('#ai .aw-play').forEach(button => button.addEventListener('click', () => {
+    gameOpener = button; frame.src = button.dataset.src; game.showModal(); frame.focus();
+  }));
+  document.getElementById('close-game').addEventListener('click', () => game.close());
+  frame.addEventListener('load', () => { try { frame.contentWindow.addEventListener('keydown', e => { if (e.key === 'Escape') game.close(); }); } catch (e) {} });
+  game.addEventListener('close', () => { frame.src = 'about:blank'; if (gameOpener) gameOpener.focus({preventScroll:true}); gameOpener = null; });
 })();
